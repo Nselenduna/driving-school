@@ -820,6 +820,114 @@ function App() {
         </div>
       </div>
 
+      {/* FAQ Section */}
+      <div className="py-12 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <h2 className="text-base text-red-600 font-semibold tracking-wide uppercase">FAQ</h2>
+            <p className="mt-2 text-3xl font-bold text-gray-900">Frequently Asked Questions</p>
+            <p className="mt-4 text-lg text-gray-500">Everything you need to know about learning to drive with us</p>
+          </div>
+
+          <div className="mt-12 max-w-3xl mx-auto divide-y divide-gray-200">
+            {/* Question 1 */}
+            <div className="py-6">
+              <h3 className="text-lg font-medium text-gray-900">
+                How many lessons will I need?
+              </h3>
+              <div className="mt-2">
+                <p className="text-base text-gray-500">
+                  The number of lessons varies per individual. On average, learners need between 20-30 hours of professional instruction. 
+                  Some may need more, others less. We'll assess your progress and advise accordingly. Our intensive course option can 
+                  help you pass more quickly if you're able to commit to regular lessons.
+                </p>
+              </div>
+            </div>
+
+            {/* Question 2 */}
+            <div className="py-6">
+              <h3 className="text-lg font-medium text-gray-900">
+                What's included in the lesson fee?
+              </h3>
+              <div className="mt-2">
+                <p className="text-base text-gray-500">
+                  Your lesson fee includes professional instruction, vehicle hire, fuel, and comprehensive insurance. 
+                  You'll also receive a progress record card, theory test support materials, and access to our online 
+                  learning resources. We provide everything you need to become a confident driver.
+                </p>
+              </div>
+            </div>
+
+            {/* Question 3 */}
+            <div className="py-6">
+              <h3 className="text-lg font-medium text-gray-900">
+                How do I book my theory and practical tests?
+              </h3>
+              <div className="mt-2">
+                <p className="text-base text-gray-500">
+                  We can help you book both your theory and practical tests. For the intensive course, we'll arrange 
+                  these for you. You can also book directly through the DVSA website. We recommend taking your theory 
+                  test as soon as possible, as you'll need to pass it before booking your practical test.
+                </p>
+              </div>
+            </div>
+
+            {/* Question 4 */}
+            <div className="py-6">
+              <h3 className="text-lg font-medium text-gray-900">
+                What happens if I need to cancel a lesson?
+              </h3>
+              <div className="mt-2">
+                <p className="text-base text-gray-500">
+                  We understand that plans can change. We require 48 hours' notice for cancellations to avoid any charges. 
+                  For emergency situations, please contact your instructor as soon as possible. We'll always try to be 
+                  flexible and accommodate changes where we can.
+                </p>
+              </div>
+            </div>
+
+            {/* Question 5 */}
+            <div className="py-6">
+              <h3 className="text-lg font-medium text-gray-900">
+                Do you provide cars for the practical test?
+              </h3>
+              <div className="mt-2">
+                <p className="text-base text-gray-500">
+                  Yes, you can use our car for your practical test. We recommend taking a familiarization lesson before 
+                  your test in the same car. This is included in our test day package, which also includes time to warm 
+                  up and calm any nerves before your test.
+                </p>
+              </div>
+            </div>
+
+            {/* Question 6 */}
+            <div className="py-6">
+              <h3 className="text-lg font-medium text-gray-900">
+                What if I'm a nervous driver?
+              </h3>
+              <div className="mt-2">
+                <p className="text-base text-gray-500">
+                  Our instructors are specially trained to work with nervous learners. We take a patient, understanding 
+                  approach and will help you build confidence gradually. You can learn at your own pace, and we'll 
+                  provide additional support and encouragement whenever needed.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* FAQ CTA */}
+          <div className="mt-12 text-center">
+            <p className="text-gray-500 mb-4">Still have questions? We're here to help</p>
+            <a
+              href="#contact"
+              className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
+            >
+              Contact Us
+            </a>
+          </div>
+        </div>
+      </div>
+
       {/* CTA Section */}
       <div className="bg-red-600">
         <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8 lg:flex lg:items-center lg:justify-between">
