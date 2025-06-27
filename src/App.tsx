@@ -19,7 +19,7 @@ const Navigation = () => {
               className="flex items-center text-xl font-bold text-red-600 hover:text-red-700 transition-colors"
             >
               <span className="sr-only">Home</span>
-              React App
+              Zhwane Driving School
             </Link>
             
             <div className="flex space-x-4">
@@ -67,7 +67,7 @@ function App() {
         <footer className="bg-white mt-auto">
           <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
             <p className="text-center text-gray-500 text-sm">
-              © {new Date().getFullYear()} React App. All rights reserved.
+              © {new Date().getFullYear()} Zhwane Driving School. All rights reserved.
             </p>
           </div>
         </footer>
