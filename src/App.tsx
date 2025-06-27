@@ -26,7 +26,7 @@ function App() {
       <div 
         className="relative min-h-screen flex items-center justify-center"
         style={{
-          backgroundImage: "url('https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80')",
+          backgroundImage: "url('/heropicture.jpeg')",
           backgroundSize: 'cover',
           backgroundPosition: 'center',
         }}
@@ -35,8 +35,8 @@ function App() {
         <div 
           className="absolute inset-0"
           style={{
-            backdropFilter: 'blur(8px)',
-            backgroundColor: 'rgba(0, 0, 0, 0.5)',
+            backdropFilter: 'blur(1px)',
+            backgroundColor: 'rgba(0, 0, 0, 0.6)',
           }}
         />
 
