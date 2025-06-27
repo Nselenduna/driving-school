@@ -20,9 +20,9 @@ const Navigation = () => {
               className="flex items-center text-xl font-bold text-red-600 hover:text-red-700 transition-colors"
             >
               <img
-                src="/zhwane pic.png"
+                src="/logo.svg"
                 alt="Zhwane Driving School"
-                className="h-8 w-auto mr-2"
+                className="h-10 w-10 mr-2"
               />
               <span>Zhwane Driving School</span>
             </Link>
