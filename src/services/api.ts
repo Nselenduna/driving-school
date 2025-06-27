@@ -1,44 +1,32 @@
-interface BookingFormData {
+interface FormData {
   firstName: string;
   lastName: string;
   email: string;
   phone: string;
   courseType: string;
   preferredInstructor: string;
-  preferredTimes: string;
+  preferredDate: string;
   message: string;
-  termsAccepted: boolean;
+  acceptedTerms: boolean;
 }
 
 interface ApiResponse {
   success: boolean;
-  message: string;
-  data?: any;
+  message?: string;
+  data?: {
+    bookingId: string;
+  };
 }
 
-export const submitBookingForm = async (formData: BookingFormData): Promise<ApiResponse> => {
-  try {
-    // TODO: Replace with actual API endpoint
-    // This is a mock API call
-    await new Promise(resolve => setTimeout(resolve, 1500));
+export const submitBookingForm = async (formData: FormData): Promise<ApiResponse> => {
+  // Simulate API call with 1 second delay
+  await new Promise(resolve => setTimeout(resolve, 1000));
 
-    // Simulate email sending
-    console.log('Sending confirmation email to:', formData.email);
-
-    // For now, always return success
-    return {
-      success: true,
-      message: 'Booking request submitted successfully',
-      data: {
-        bookingId: Math.random().toString(36).substring(7),
-        submissionTime: new Date().toISOString()
-      }
-    };
-  } catch (error) {
-    console.error('Error submitting booking form:', error);
-    return {
-      success: false,
-      message: 'Failed to submit booking request. Please try again later.'
-    };
-  }
+  // Simulate successful response
+  return {
+    success: true,
+    data: {
+      bookingId: Math.random().toString(36).substring(7)
+    }
+  };
 }; 
