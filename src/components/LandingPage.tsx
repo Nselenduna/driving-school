@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { sampleBlogPosts } from './Blog';
 
 const LandingPage: React.FC = () => {
   return (
@@ -198,9 +199,220 @@ const LandingPage: React.FC = () => {
                 to="/book"
                 className="block w-full bg-red-600 text-white text-center rounded-lg py-3 hover:bg-red-700 transition-colors duration-300"
               >
-                Get Premium
+                Choose Plan
               </Link>
             </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Instructors Section */}
+      <div className="py-12 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <h2 className="text-base text-red-600 font-semibold tracking-wide uppercase">Meet Our Team</h2>
+            <p className="mt-2 text-3xl font-bold text-gray-900">Expert Driving Instructors</p>
+            <p className="mt-4 text-xl text-gray-500">Learn from our experienced and certified instructors</p>
+          </div>
+
+          <div className="mt-10 grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3">
+            {/* Instructor 1 */}
+            <div className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
+              <div className="aspect-w-3 aspect-h-4">
+                <img
+                  src="/mthoko pic.png"
+                  alt="Mthokozisi Dube"
+                  className="object-cover w-full h-full"
+                />
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-bold text-gray-900 mb-2">Mthokozisi Dube</h3>
+                <p className="text-red-600 font-semibold mb-3">Senior Instructor</p>
+                <p className="text-gray-600">
+                  Over 15 years of experience in driver education. Specializes in helping nervous learners build confidence.
+                </p>
+                <div className="mt-4 flex items-center text-sm text-gray-500">
+                  <span>✓ ADI Certified</span>
+                  <span className="mx-2">•</span>
+                  <span>Grade A Instructor</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Instructor 2 */}
+            <div className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
+              <div className="aspect-w-3 aspect-h-4">
+                <img
+                  src="/bheki pic.png"
+                  alt="Bhekisipho Ndlovu"
+                  className="object-cover w-full h-full"
+                />
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-bold text-gray-900 mb-2">Bhekisipho Ndlovu</h3>
+                <p className="text-red-600 font-semibold mb-3">Theory Specialist</p>
+                <p className="text-gray-600">
+                  Expert in theory test preparation and highway code instruction. Known for his patient and methodical approach.
+                </p>
+                <div className="mt-4 flex items-center text-sm text-gray-500">
+                  <span>✓ ADI Certified</span>
+                  <span className="mx-2">•</span>
+                  <span>Theory Expert</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Instructor 3 */}
+            <div className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
+              <div className="aspect-w-3 aspect-h-4">
+                <img
+                  src="/zhwane pic.png"
+                  alt="Melisizwe Zhwane"
+                  className="object-cover w-full h-full"
+                />
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-bold text-gray-900 mb-2">Melisizwe Sithole</h3>
+                <p className="text-red-600 font-semibold mb-3">Advanced Instructor</p>
+                <p className="text-gray-600">
+                  Specializes in advanced driving techniques and test preparation. Perfect for learners ready for their practical test.
+                </p>
+                <div className="mt-4 flex items-center text-sm text-gray-500">
+                  <span>✓ ADI Certified</span>
+                  <span className="mx-2">•</span>
+                  <span>Test Specialist</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Vehicles Preview Section */}
+      <div className="py-12 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <h2 className="text-base text-red-600 font-semibold tracking-wide uppercase">Our Fleet</h2>
+            <p className="mt-2 text-3xl font-bold text-gray-900">Training Vehicles for Every Need</p>
+            <p className="mt-4 text-xl text-gray-500">Learn to drive in vehicles suited to your goals</p>
+          </div>
+
+          <div className="mt-10 grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3">
+            {/* Small Sedan */}
+            <div className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
+              <div className="aspect-w-16 aspect-h-9">
+                <img
+                  src="https://images.unsplash.com/photo-1549399542-7e3f8b79c341?q=80&w=1000&auto=format&fit=crop"
+                  alt="Small Sedan"
+                  className="object-cover w-full h-full"
+                />
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-bold text-gray-900 mb-2">Small Sedan</h3>
+                <p className="text-gray-600">
+                  Perfect for beginners. Our compact sedans are easy to maneuver and ideal for learning the basics of driving.
+                </p>
+              </div>
+            </div>
+
+            {/* Motorcycle */}
+            <div className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
+              <div className="aspect-w-16 aspect-h-9">
+                <img
+                  src="https://images.unsplash.com/photo-1558981806-ec527fa84c39?q=80&w=1000&auto=format&fit=crop"
+                  alt="Motorcycle"
+                  className="object-cover w-full h-full"
+                />
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-bold text-gray-900 mb-2">Motorcycle</h3>
+                <p className="text-gray-600">
+                  Learn to ride safely on our training motorcycles. Perfect for A1 and A2 license preparation.
+                </p>
+              </div>
+            </div>
+
+            {/* Construction Equipment */}
+            <div className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
+              <div className="aspect-w-16 aspect-h-9">
+                <img
+                  src="https://images.unsplash.com/photo-1581094288338-2314dddb7ece?q=80&w=1000&auto=format&fit=crop"
+                  alt="Construction Equipment"
+                  className="object-cover w-full h-full"
+                />
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-bold text-gray-900 mb-2">Construction Equipment</h3>
+                <p className="text-gray-600">
+                  Professional training on excavators and other construction machinery. Get certified for heavy equipment operation.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-12 text-center">
+            <Link
+              to="/fleet"
+              className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-red-600 hover:bg-red-700 transition-colors duration-300"
+            >
+              View All Vehicles
+            </Link>
+          </div>
+        </div>
+      </div>
+
+      {/* Blog Preview Section */}
+      <div className="py-12 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-base text-red-600 font-semibold tracking-wide uppercase">Latest Articles</h2>
+            <p className="mt-2 text-3xl font-bold text-gray-900">Driving Tips & Resources</p>
+            <p className="mt-4 text-xl text-gray-500">Stay updated with our latest driving advice and tips</p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {sampleBlogPosts.slice(0, 3).map((post) => (
+              <Link
+                key={post.id}
+                to={`/blog/${post.id}`}
+                className="block group"
+              >
+                <article className="bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 group-hover:shadow-xl">
+                  <div className="aspect-w-16 aspect-h-9">
+                    <img
+                      src={post.imageUrl}
+                      alt={post.title}
+                      className="object-cover w-full h-full transition-transform duration-300 group-hover:scale-105"
+                    />
+                  </div>
+                  <div className="p-6">
+                    <span className="inline-block px-3 py-1 text-sm font-semibold text-red-600 bg-red-50 rounded-full mb-3">
+                      {post.category}
+                    </span>
+                    <h3 className="text-xl font-bold text-gray-900 mb-2 line-clamp-2">
+                      {post.title}
+                    </h3>
+                    <p className="text-gray-600 mb-4 line-clamp-3">
+                      {post.excerpt}
+                    </p>
+                    <div className="flex items-center text-sm text-gray-500">
+                      <span>{post.author}</span>
+                      <span className="mx-2">•</span>
+                      <span>{post.readTime}</span>
+                    </div>
+                  </div>
+                </article>
+              </Link>
+            ))}
+          </div>
+
+          <div className="mt-12 text-center">
+            <Link
+              to="/blog"
+              className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-red-600 hover:bg-red-700 transition-colors duration-300"
+            >
+              View All Articles
+            </Link>
           </div>
         </div>
       </div>

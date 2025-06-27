@@ -245,13 +245,18 @@ const BookingForm: React.FC = () => {
               name="preferredInstructor"
               value={formData.preferredInstructor}
               onChange={handleInputChange}
-              className="mt-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-red-500 focus:ring-red-500 text-base px-4 py-3"
+              className={`mt-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-red-500 focus:ring-red-500 text-base px-4 py-3 ${
+                errors.preferredInstructor ? 'border-red-500' : ''
+              }`}
             >
               <option value="">No preference</option>
-              <option value="instructor1">John Smith</option>
-              <option value="instructor2">Sarah Johnson</option>
-              <option value="instructor3">Michael Brown</option>
+              <option value="Mthokozisi Dube">Mthokozisi Dube - Senior Instructor</option>
+              <option value="Bhekisipho Ndlovu">Bhekisipho Ndlovu - Theory Specialist</option>
+                                <option value="Melisizwe Sithole">Melisizwe Sithole - Advanced Instructor</option>
             </select>
+            {errors.preferredInstructor && (
+              <p className="mt-2 text-sm text-red-600">{errors.preferredInstructor}</p>
+            )}
           </div>
 
           <div>
