@@ -1,43 +1,61 @@
 import React from 'react';
 import './App.css';
-import Blog, { sampleBlogPosts } from './components/Blog';
-import BlogPost from './components/BlogPost';
 import BookingForm from './components/BookingForm';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
 import { Analytics } from '@vercel/analytics/react';
 import QRShare from './components/QRShare';
+
+// Navigation component with active state
+const Navigation = () => {
+  const location = useLocation();
+  
+  return (
+    <nav className="bg-white shadow-sm">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between h-16">
+          <div className="flex items-center justify-between w-full">
+            <Link 
+              to="/" 
+              className="flex items-center text-xl font-bold text-red-600 hover:text-red-700 transition-colors"
+            >
+              <span className="sr-only">Home</span>
+              Driving School
+            </Link>
+            
+            <div className="flex space-x-4">
+              <Link
+                to="/"
+                className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
+                  location.pathname === '/' 
+                    ? 'bg-red-100 text-red-700' 
+                    : 'text-gray-700 hover:bg-gray-100'
+                }`}
+              >
+                Book Now
+              </Link>
+              <Link
+                to="/share"
+                className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
+                  location.pathname === '/share'
+                    ? 'bg-red-100 text-red-700'
+                    : 'text-gray-700 hover:bg-gray-100'
+                }`}
+              >
+                Share
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+  );
+};
 
 function App() {
   return (
     <Router>
       <div className="min-h-screen bg-gray-100">
-        <nav className="bg-white shadow-sm">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex justify-between h-16">
-              <div className="flex">
-                <div className="flex-shrink-0 flex items-center">
-                  <Link to="/" className="text-xl font-bold text-red-600">
-                    Driving School
-                  </Link>
-                </div>
-                <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
-                  <Link
-                    to="/"
-                    className="text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 border-transparent hover:border-red-600"
-                  >
-                    Book Now
-                  </Link>
-                  <Link
-                    to="/share"
-                    className="text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 border-transparent hover:border-red-600"
-                  >
-                    Share
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </div>
-        </nav>
+        <Navigation />
 
         <div className="py-10">
           <Routes>
