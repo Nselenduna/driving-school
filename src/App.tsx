@@ -1,5 +1,7 @@
 import React from 'react';
 import './App.css';
+import Blog, { sampleBlogPosts } from './components/Blog';
+import BlogPost from './components/BlogPost';
 import BookingForm from './components/BookingForm';
 import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
 import { Analytics } from '@vercel/analytics/react';
@@ -11,55 +13,41 @@ const Navigation = () => {
   const location = useLocation();
   
   return (
-    <nav className="bg-white shadow-sm">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between h-16">
-          <div className="flex items-center justify-between w-full">
-            <Link 
-              to="/" 
-              className="flex items-center text-xl font-bold text-red-600 hover:text-red-700 transition-colors"
-            >
-              <img
-                src="/logo.svg"
-                alt="Zhwane Driving School"
-                className="h-10 w-10 mr-2"
-              />
-              <span>Zhwane Driving School</span>
-            </Link>
-            
-            <div className="flex space-x-4">
-              <Link
-                to="/"
-                className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
-                  location.pathname === '/' 
-                    ? 'bg-red-100 text-red-700' 
-                    : 'text-gray-700 hover:bg-gray-100'
-                }`}
-              >
-                Home
-              </Link>
-              <Link
-                to="/book"
-                className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
-                  location.pathname === '/book'
-                    ? 'bg-red-100 text-red-700'
-                    : 'text-gray-700 hover:bg-gray-100'
-                }`}
-              >
-                Book Now
-              </Link>
-              <Link
-                to="/share"
-                className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
-                  location.pathname === '/share'
-                    ? 'bg-red-100 text-red-700'
-                    : 'text-gray-700 hover:bg-gray-100'
-                }`}
-              >
-                Share
-              </Link>
+    <nav className="bg-white/90 shadow-sm fixed w-full z-50 backdrop-blur-sm">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+        <div className="flex items-center">
+          <Link to="/" className="flex items-center">
+            <div className="w-10 h-10 bg-red-600 flex items-center justify-center rounded-lg">
+              <span className="text-2xl font-bold text-white">L</span>
             </div>
-          </div>
+            <span className="ml-3 text-xl font-semibold text-gray-900">ZHWANE DRIVING SCHOOL</span>
+          </Link>
+        </div>
+        <div className="hidden md:flex space-x-8">
+          <Link
+            to="/"
+            className={`text-gray-600 hover:text-red-600 ${
+              location.pathname === '/' ? 'text-red-600' : ''
+            }`}
+          >
+            Home
+          </Link>
+          <Link
+            to="/book"
+            className={`text-gray-600 hover:text-red-600 ${
+              location.pathname === '/book' ? 'text-red-600' : ''
+            }`}
+          >
+            Book Now
+          </Link>
+          <Link
+            to="/share"
+            className={`text-gray-600 hover:text-red-600 ${
+              location.pathname === '/share' ? 'text-red-600' : ''
+            }`}
+          >
+            Share
+          </Link>
         </div>
       </div>
     </nav>
@@ -69,10 +57,10 @@ const Navigation = () => {
 function App() {
   return (
     <Router>
-      <div className="min-h-screen bg-gray-100">
+      <div className="min-h-screen bg-white">
         <Navigation />
 
-        <div className="py-10">
+        <div className="pt-16">
           <Routes>
             <Route path="/" element={<LandingPage />} />
             <Route path="/book" element={<BookingForm />} />
