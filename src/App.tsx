@@ -1,7 +1,5 @@
 import React from 'react';
 import './App.css';
-import Blog, { sampleBlogPosts } from './components/Blog';
-import BlogPost from './components/BlogPost';
 import BookingForm from './components/BookingForm';
 import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
 import { Analytics } from '@vercel/analytics/react';
