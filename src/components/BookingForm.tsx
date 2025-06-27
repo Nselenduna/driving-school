@@ -8,9 +8,9 @@ interface BookingFormData {
   phone: string;
   courseType: string;
   preferredInstructor: string;
-  preferredTimes: string;
+  preferredDate: string;
   message: string;
-  termsAccepted: boolean;
+  acceptedTerms: boolean;
 }
 
 const initialFormData: BookingFormData = {
@@ -20,9 +20,9 @@ const initialFormData: BookingFormData = {
   phone: '',
   courseType: '',
   preferredInstructor: '',
-  preferredTimes: '',
+  preferredDate: '',
   message: '',
-  termsAccepted: false
+  acceptedTerms: false
 };
 
 interface FormErrors {
@@ -62,11 +62,11 @@ const BookingForm: React.FC = () => {
       newErrors.courseType = 'Please select a course type';
     }
     
-    if (!formData.preferredTimes) {
-      newErrors.preferredTimes = 'Please select preferred times';
+    if (!formData.preferredDate) {
+      newErrors.preferredDate = 'Please select preferred date';
     }
 
-    if (!formData.termsAccepted) {
+    if (!formData.acceptedTerms) {
       newErrors.terms = 'You must accept the terms and conditions to proceed';
     }
 
@@ -105,7 +105,7 @@ const BookingForm: React.FC = () => {
     try {
       const response = await submitBookingForm(formData);
       
-      if (response.success) {
+      if (response.success && response.data) {
         setSubmitStatus('success');
         setFormData(initialFormData);
         
@@ -227,9 +227,9 @@ const BookingForm: React.FC = () => {
               }`}
             >
               <option value="">Select a course</option>
-              <option value="standard">Standard Course (20-30 Hours)</option>
-              <option value="intensive">Intensive Course (2-3 Weeks)</option>
-              <option value="refresher">Refresher Course</option>
+              <option value="starter">Starter Package (£299)</option>
+              <option value="standard">Standard Package (£549)</option>
+              <option value="premium">Premium Package (£799)</option>
             </select>
             {errors.courseType && (
               <p className="mt-2 text-sm text-red-600">{errors.courseType}</p>
@@ -238,7 +238,7 @@ const BookingForm: React.FC = () => {
 
           <div>
             <label htmlFor="preferredInstructor" className="block text-base font-medium text-gray-700">
-              Preferred Instructor (Optional)
+              Preferred Instructor
             </label>
             <select
               id="preferredInstructor"
@@ -248,34 +248,28 @@ const BookingForm: React.FC = () => {
               className="mt-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-red-500 focus:ring-red-500 text-base px-4 py-3"
             >
               <option value="">No preference</option>
-              <option value="mthokozisi">Mthokozisi Dube</option>
-              <option value="melisizwe">Melisizwe Sithole</option>
-              <option value="bhekisipho">Bhekisipho Ndlovu</option>
+              <option value="instructor1">John Smith</option>
+              <option value="instructor2">Sarah Johnson</option>
+              <option value="instructor3">Michael Brown</option>
             </select>
           </div>
 
           <div>
-            <label htmlFor="preferredTimes" className="block text-base font-medium text-gray-700">
-              Preferred Learning Times
+            <label htmlFor="preferredDate" className="block text-base font-medium text-gray-700">
+              Preferred Start Date
             </label>
-            <select
-              id="preferredTimes"
-              name="preferredTimes"
-              value={formData.preferredTimes}
+            <input
+              type="date"
+              id="preferredDate"
+              name="preferredDate"
+              value={formData.preferredDate}
               onChange={handleInputChange}
               className={`mt-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-red-500 focus:ring-red-500 text-base px-4 py-3 ${
-                errors.preferredTimes ? 'border-red-500' : ''
+                errors.preferredDate ? 'border-red-500' : ''
               }`}
-            >
-              <option value="">Select preferred time</option>
-              <option value="weekday-morning">Weekday Mornings</option>
-              <option value="weekday-afternoon">Weekday Afternoons</option>
-              <option value="weekday-evening">Weekday Evenings</option>
-              <option value="weekend">Weekends</option>
-              <option value="flexible">Flexible</option>
-            </select>
-            {errors.preferredTimes && (
-              <p className="mt-2 text-sm text-red-600">{errors.preferredTimes}</p>
+            />
+            {errors.preferredDate && (
+              <p className="mt-2 text-sm text-red-600">{errors.preferredDate}</p>
             )}
           </div>
         </div>
@@ -295,7 +289,7 @@ const BookingForm: React.FC = () => {
             value={formData.message}
             onChange={handleInputChange}
             className="mt-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-red-500 focus:ring-red-500 text-base px-4 py-3"
-            placeholder="Tell us about your driving experience, specific requirements, or any questions you have..."
+            placeholder="Any additional information or special requirements..."
           />
         </div>
       </div>
@@ -304,49 +298,38 @@ const BookingForm: React.FC = () => {
       <div className="flex items-start">
         <div className="flex items-center h-5">
           <input
-            id="terms"
-            name="termsAccepted"
+            id="acceptedTerms"
+            name="acceptedTerms"
             type="checkbox"
-            checked={formData.termsAccepted}
+            checked={formData.acceptedTerms}
             onChange={handleInputChange}
-            aria-label="Accept terms and conditions"
-            className="h-5 w-5 text-red-600 focus:ring-red-500 border-gray-300 rounded"
+            className="h-4 w-4 text-red-600 focus:ring-red-500 border-gray-300 rounded"
           />
         </div>
-        <div className="ml-3 text-base">
-          <p className="text-gray-500">
-            By selecting this, you agree to our{' '}
-            <a href="#" className="font-medium text-red-600 hover:text-red-500">
-              Privacy Policy
-            </a>{' '}
-            and{' '}
-            <a href="#" className="font-medium text-red-600 hover:text-red-500">
-              Terms of Service
-            </a>
-            .
-          </p>
+        <div className="ml-3">
+          <label htmlFor="acceptedTerms" className="text-base text-gray-700">
+            I accept the terms and conditions
+          </label>
           {errors.terms && (
             <p className="mt-2 text-sm text-red-600">{errors.terms}</p>
           )}
         </div>
       </div>
 
-      {errors.submit && (
-        <div className="rounded-md bg-red-50 p-4">
-          <p className="text-base text-red-600">{errors.submit}</p>
-        </div>
-      )}
-
+      {/* Submit Button */}
       <div>
         <button
           type="submit"
           disabled={isSubmitting}
-          className={`w-full flex justify-center py-4 px-6 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 ${
+          className={`w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 ${
             isSubmitting ? 'opacity-75 cursor-not-allowed' : ''
           }`}
         >
           {isSubmitting ? 'Submitting...' : 'Submit Booking Request'}
         </button>
+        {submitStatus === 'error' && errors.submit && (
+          <p className="mt-2 text-sm text-red-600">{errors.submit}</p>
+        )}
       </div>
     </form>
   );
