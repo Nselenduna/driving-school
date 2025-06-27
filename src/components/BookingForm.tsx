@@ -33,7 +33,11 @@ const BookingForm: React.FC = () => {
   const [formData, setFormData] = useState<BookingFormData>(initialFormData);
   const [errors, setErrors] = useState<FormErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [success, setSuccess] = useState(false);
+  const [showTerms, setShowTerms] = useState(false);
+  const [showPrivacy, setShowPrivacy] = useState(false);
 
   const validateForm = (): boolean => {
     const newErrors: FormErrors = {};
@@ -100,13 +104,12 @@ const BookingForm: React.FC = () => {
     }
 
     setIsSubmitting(true);
-    setSubmitStatus('idle');
 
     try {
       const response = await submitBookingForm(formData);
       
       if (response.success) {
-        setSubmitStatus('success');
+        setSuccess(true);
         setFormData(initialFormData);
         
         // Show success message
@@ -115,11 +118,7 @@ const BookingForm: React.FC = () => {
         throw new Error(response.message);
       }
     } catch (error) {
-      setSubmitStatus('error');
-      setErrors(prev => ({
-        ...prev,
-        submit: error instanceof Error ? error.message : 'Failed to submit booking request. Please try again.'
-      }));
+      setError(error instanceof Error ? error.message : 'Failed to submit booking request. Please try again.');
     } finally {
       setIsSubmitting(false);
     }
@@ -316,13 +315,19 @@ const BookingForm: React.FC = () => {
         <div className="ml-3 text-base">
           <p className="text-gray-500">
             By selecting this, you agree to our{' '}
-            <a href="#" className="font-medium text-red-600 hover:text-red-500">
-              Privacy Policy
-            </a>{' '}
-            and{' '}
-            <a href="#" className="font-medium text-red-600 hover:text-red-500">
+            <button 
+              className="text-blue-600 hover:text-blue-800 cursor-pointer"
+              onClick={() => setShowTerms(true)}
+            >
               Terms of Service
-            </a>
+            </button>{' '}
+            and{' '}
+            <button 
+              className="text-blue-600 hover:text-blue-800 cursor-pointer"
+              onClick={() => setShowPrivacy(true)}
+            >
+              Privacy Policy
+            </button>
             .
           </p>
           {errors.terms && (
@@ -331,9 +336,9 @@ const BookingForm: React.FC = () => {
         </div>
       </div>
 
-      {errors.submit && (
+      {error && (
         <div className="rounded-md bg-red-50 p-4">
-          <p className="text-base text-red-600">{errors.submit}</p>
+          <p className="text-base text-red-600">{error}</p>
         </div>
       )}
 

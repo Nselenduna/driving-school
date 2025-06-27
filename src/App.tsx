@@ -4,6 +4,7 @@ import Blog, { sampleBlogPosts } from './components/Blog';
 import BlogPost from './components/BlogPost';
 import BookingForm from './components/BookingForm';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Analytics } from '@vercel/analytics/react';
 
 function App() {
   return (
@@ -840,6 +841,7 @@ function App() {
           </div>
         </footer>
       </div>
+      <Analytics />
     </Router>
   );
 }
