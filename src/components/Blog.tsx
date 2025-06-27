@@ -48,7 +48,7 @@ const sampleBlogPosts: BlogPost[] = [
     title: "Preparing for Your Theory Test: Top Study Strategies",
     excerpt: "Get ready to ace your theory test with our proven study methods. We'll cover the best resources, practice techniques, and time management tips.",
     date: "March 8, 2025",
-    author: "Melisizwe Sithole",
+    author: "Melisizwe Zhwane",
     category: "Test Preparation",
     imageUrl: "/theory class picture.jpeg",
     readTime: "7 min read"
