@@ -11,7 +11,7 @@ function App() {
             <div className="w-10 h-10 bg-red-600 flex items-center justify-center rounded-lg">
               <span className="text-2xl font-bold text-white">L</span>
             </div>
-            <span className="ml-3 text-xl font-semibold text-gray-900">SITHOLE DRIVING SCHOOL</span>
+            <span className="ml-3 text-xl font-semibold text-gray-900">ZHWANE DRIVING SCHOOL</span>
           </div>
           <div className="hidden md:flex space-x-8">
             <a href="#courses" className="text-gray-600 hover:text-red-600">Courses</a>
@@ -622,6 +622,200 @@ function App() {
             >
               Contact Us
             </a>
+          </div>
+        </div>
+      </div>
+
+      {/* Contact/Booking Form Section */}
+      <div className="py-12 bg-white" id="contact">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <h2 className="text-base text-red-600 font-semibold tracking-wide uppercase">GET STARTED</h2>
+            <p className="mt-2 text-3xl font-bold text-gray-900">Book Your Driving Course</p>
+            <p className="mt-4 text-lg text-gray-500">Fill out the form below and we'll get back to you within 24 hours</p>
+          </div>
+
+          <div className="mt-12 max-w-2xl mx-auto">
+            <form 
+              className="space-y-8"
+              aria-label="Driving course booking form"
+            >
+              {/* Personal Information */}
+              <div>
+                <h3 className="text-lg font-medium text-gray-900">Personal Information</h3>
+                <div className="mt-6 grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-4">
+                  <div>
+                    <label htmlFor="first-name" className="block text-sm text-gray-700">
+                      First name
+                    </label>
+                    <div className="mt-1">
+                      <input
+                        type="text"
+                        name="first-name"
+                        id="first-name"
+                        autoComplete="given-name"
+                        className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-1 focus:ring-red-500 focus:border-red-500"
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label htmlFor="last-name" className="block text-sm text-gray-700">
+                      Last name
+                    </label>
+                    <div className="mt-1">
+                      <input
+                        type="text"
+                        name="last-name"
+                        id="last-name"
+                        autoComplete="family-name"
+                        className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-1 focus:ring-red-500 focus:border-red-500"
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label htmlFor="email" className="block text-sm text-gray-700">
+                      Email
+                    </label>
+                    <div className="mt-1">
+                      <input
+                        type="email"
+                        name="email"
+                        id="email"
+                        autoComplete="email"
+                        className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-1 focus:ring-red-500 focus:border-red-500"
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label htmlFor="phone" className="block text-sm text-gray-700">
+                      Phone number
+                    </label>
+                    <div className="mt-1">
+                      <input
+                        type="tel"
+                        name="phone"
+                        id="phone"
+                        autoComplete="tel"
+                        className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-1 focus:ring-red-500 focus:border-red-500"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Course Details */}
+              <div className="mt-8">
+                <h3 className="text-lg font-medium text-gray-900">Course Details</h3>
+                <div className="mt-6 space-y-6">
+                  <div>
+                    <label htmlFor="course-type" className="block text-sm text-gray-700">
+                      Course Type
+                    </label>
+                    <div className="mt-1">
+                      <select
+                        id="course-type"
+                        name="course-type"
+                        className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-1 focus:ring-red-500 focus:border-red-500"
+                      >
+                        <option value="">Select a course</option>
+                        <option value="standard">Standard Course (20-30 Hours)</option>
+                        <option value="intensive">Intensive Course (2-3 Weeks)</option>
+                        <option value="refresher">Refresher Course</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div>
+                    <label htmlFor="preferred-instructor" className="block text-sm text-gray-700">
+                      Preferred Instructor <span className="text-red-600 text-sm">(Optional)</span>
+                    </label>
+                    <div className="mt-1">
+                      <select
+                        id="preferred-instructor"
+                        name="preferred-instructor"
+                        className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-1 focus:ring-red-500 focus:border-red-500"
+                      >
+                        <option value="">No preference</option>
+                        <option value="mthokozisi">Mthokozisi Dube</option>
+                        <option value="melisizwe">Melisizwe Sithole</option>
+                        <option value="bhekisipho">Bhekisipho Ndlovu</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div>
+                    <label htmlFor="availability" className="block text-sm text-gray-700">
+                      Preferred Learning Times
+                    </label>
+                    <div className="mt-1">
+                      <select
+                        id="availability"
+                        name="availability"
+                        className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-1 focus:ring-red-500 focus:border-red-500"
+                      >
+                        <option value="">Select preferred time</option>
+                        <option value="weekday-morning">Weekday Mornings</option>
+                        <option value="weekday-afternoon">Weekday Afternoons</option>
+                        <option value="weekday-evening">Weekday Evenings</option>
+                        <option value="weekend">Weekends</option>
+                        <option value="flexible">Flexible</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div>
+                    <label htmlFor="message" className="block text-sm text-gray-700">
+                      Additional Information
+                    </label>
+                    <div className="mt-1">
+                      <textarea
+                        id="message"
+                        name="message"
+                        rows={4}
+                        className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-1 focus:ring-red-500 focus:border-red-500"
+                        placeholder="Tell us about your driving experience, specific requirements, or any questions you have..."
+                      ></textarea>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex items-start">
+                <div className="flex items-center h-5">
+                  <input
+                    id="terms"
+                    name="terms"
+                    type="checkbox"
+                    className="h-4 w-4 text-red-600 focus:ring-red-500 border-gray-300 rounded"
+                  />
+                </div>
+                <div className="ml-3 text-sm">
+                  <p className="text-gray-500">
+                    By selecting this, you agree to our{' '}
+                    <a href="#" className="font-medium text-red-600 hover:text-red-500">
+                      Privacy Policy
+                    </a>{' '}
+                    and{' '}
+                    <a href="#" className="font-medium text-red-600 hover:text-red-500">
+                      Terms of Service
+                    </a>
+                    .
+                  </p>
+                </div>
+              </div>
+
+              <div>
+                <button
+                  type="submit"
+                  className="w-full px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
+                >
+                  Submit Booking Request
+                </button>
+              </div>
+            </form>
           </div>
         </div>
       </div>
