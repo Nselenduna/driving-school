@@ -210,6 +210,422 @@ function App() {
         </div>
       </div>
 
+      {/* Testimonials Section */}
+      <div className="py-12 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <h2 className="text-base text-red-600 font-semibold tracking-wide uppercase">Testimonials</h2>
+            <p className="mt-2 text-3xl font-bold text-gray-900">What Our Students Say</p>
+            <p className="mt-4 text-lg text-gray-500">Don't just take our word for it - hear from our successful students</p>
+          </div>
+
+          <div className="mt-12 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+            {/* Testimonial 1 */}
+            <div className="bg-white rounded-xl shadow-md p-8 hover:shadow-lg transition-shadow duration-300">
+              <div className="flex items-center mb-4">
+                <div className="h-12 w-12 rounded-full bg-gray-200 overflow-hidden">
+                  <img 
+                    src="https://randomuser.me/api/portraits/women/32.jpg" 
+                    alt="Sarah Johnson"
+                    className="h-full w-full object-cover"
+                  />
+                </div>
+                <div className="ml-4">
+                  <h3 className="text-lg font-semibold text-gray-900">Sarah Johnson</h3>
+                  <p className="text-green-600 font-medium">Passed First Time</p>
+                </div>
+              </div>
+              <div className="flex text-yellow-400 mb-3">
+                {"★".repeat(5)}
+              </div>
+              <p className="text-gray-600 italic">
+                "The instructors at Sithole Driving School were incredibly patient and professional. 
+                Their structured approach helped me pass my test first time! I couldn't recommend them enough."
+              </p>
+            </div>
+
+            {/* Testimonial 2 */}
+            <div className="bg-white rounded-xl shadow-md p-8 hover:shadow-lg transition-shadow duration-300">
+              <div className="flex items-center mb-4">
+                <div className="h-12 w-12 rounded-full bg-gray-200 overflow-hidden">
+                  <img 
+                    src="https://randomuser.me/api/portraits/men/45.jpg" 
+                    alt="James Smith"
+                    className="h-full w-full object-cover"
+                  />
+                </div>
+                <div className="ml-4">
+                  <h3 className="text-lg font-semibold text-gray-900">James Smith</h3>
+                  <p className="text-green-600 font-medium">Passed First Time</p>
+                </div>
+              </div>
+              <div className="flex text-yellow-400 mb-3">
+                {"★".repeat(5)}
+              </div>
+              <p className="text-gray-600 italic">
+                "As a nervous driver, I was worried about learning to drive. The team here made me feel 
+                comfortable from day one. Their patience and expertise made all the difference."
+              </p>
+            </div>
+
+            {/* Testimonial 3 */}
+            <div className="bg-white rounded-xl shadow-md p-8 hover:shadow-lg transition-shadow duration-300">
+              <div className="flex items-center mb-4">
+                <div className="h-12 w-12 rounded-full bg-gray-200 overflow-hidden">
+                  <img 
+                    src="https://randomuser.me/api/portraits/women/68.jpg" 
+                    alt="Emily Chen"
+                    className="h-full w-full object-cover"
+                  />
+                </div>
+                <div className="ml-4">
+                  <h3 className="text-lg font-semibold text-gray-900">Emily Chen</h3>
+                  <p className="text-green-600 font-medium">Intensive Course Graduate</p>
+                </div>
+              </div>
+              <div className="flex text-yellow-400 mb-3">
+                {"★".repeat(5)}
+              </div>
+              <p className="text-gray-600 italic">
+                "I took their intensive course and passed within weeks! The instructors are knowledgeable 
+                and the learning materials were extremely helpful. Best driving school in the area!"
+              </p>
+            </div>
+          </div>
+
+          {/* Call to Action */}
+          <div className="mt-12 text-center">
+            <a
+              href="#book-lesson"
+              className="inline-flex items-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-red-600 hover:bg-red-700 transition-colors duration-300"
+            >
+              Start Your Journey Today
+            </a>
+          </div>
+        </div>
+      </div>
+
+      {/* Instructor Profiles Section */}
+      <div className="py-12 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <h2 className="text-base text-red-600 font-semibold tracking-wide uppercase">Our Instructors</h2>
+            <p className="mt-2 text-3xl font-bold text-gray-900">Meet Our Expert Team</p>
+            <p className="mt-4 text-lg text-gray-500">Learn from experienced, DVSA-approved driving instructors</p>
+          </div>
+
+          <div className="mt-12 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+            {/* Instructor 1 */}
+            <div className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-all duration-300 border border-gray-100">
+              <div className="h-64 w-full overflow-hidden">
+                <img 
+                  src="mthoko pic.png"
+                  alt="Mthokozisi Dube"
+                  className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-300"
+                />
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-bold text-gray-900 mb-2">Mthokozisi Dube</h3>
+                <p className="text-red-600 font-medium mb-3">Senior Instructor</p>
+                <div className="space-y-2 text-gray-600 mb-4">
+                  <div className="flex items-center">
+                    <span className="mr-2">✓</span>
+                    <span>15+ years of experience</span>
+                  </div>
+                  <div className="flex items-center">
+                    <span className="mr-2">✓</span>
+                    <span>Automatic & Manual Specialist</span>
+                  </div>
+                  <div className="flex items-center">
+                    <span className="mr-2">✓</span>
+                    <span>Nervous Driver Specialist</span>
+                  </div>
+                </div>
+                <button className="w-full bg-gray-50 text-gray-700 py-2 rounded-md hover:bg-red-50 hover:text-red-600 transition-colors duration-300 border border-gray-200">
+                  View Profile
+                </button>
+              </div>
+            </div>
+
+            {/* Instructor 2 */}
+            <div className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-all duration-300 border border-gray-100">
+              <div className="h-64 w-full overflow-hidden">
+                <img 
+                  src="sithole pic.png"
+                  alt="Melisizwe Sithole"
+                  className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-300"
+                />
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-bold text-gray-900 mb-2">Melisizwe Sithole</h3>
+                <p className="text-red-600 font-medium mb-3">Lead Instructor</p>
+                <div className="space-y-2 text-gray-600 mb-4">
+                  <div className="flex items-center">
+                    <span className="mr-2">✓</span>
+                    <span>12 years of experience</span>
+                  </div>
+                  <div className="flex items-center">
+                    <span className="mr-2">✓</span>
+                    <span>Pass Plus Certified</span>
+                  </div>
+                  <div className="flex items-center">
+                    <span className="mr-2">✓</span>
+                    <span>Intensive Course Expert</span>
+                  </div>
+                </div>
+                <button className="w-full bg-gray-50 text-gray-700 py-2 rounded-md hover:bg-red-50 hover:text-red-600 transition-colors duration-300 border border-gray-200">
+                  View Profile
+                </button>
+              </div>
+            </div>
+
+            {/* Instructor 3 */}
+            <div className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-all duration-300 border border-gray-100">
+              <div className="h-64 w-full overflow-hidden">
+                <img 
+                  src="bheki pic.png"
+                  alt="Bhekisipho Ndlovu"
+                  className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-300"
+                />
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-bold text-gray-900 mb-2">Bhekisipho Ndlovu</h3>
+                <p className="text-red-600 font-medium mb-3">Theory Test Specialist</p>
+                <div className="space-y-2 text-gray-600 mb-4">
+                  <div className="flex items-center">
+                    <span className="mr-2">✓</span>
+                    <span>8 years of experience</span>
+                  </div>
+                  <div className="flex items-center">
+                    <span className="mr-2">✓</span>
+                    <span>Theory Test Expert</span>
+                  </div>
+                  <div className="flex items-center">
+                    <span className="mr-2">✓</span>
+                    <span>Multilingual Instruction</span>
+                  </div>
+                </div>
+                <button className="w-full bg-gray-50 text-gray-700 py-2 rounded-md hover:bg-red-50 hover:text-red-600 transition-colors duration-300 border border-gray-200">
+                  View Profile
+                </button>
+              </div>
+            </div>
+          </div>
+
+          {/* Team CTA */}
+          <div className="mt-12 text-center">
+            <p className="text-gray-500 mb-4">Our instructors are ready to help you achieve your driving goals</p>
+            <a
+              href="#book-lesson"
+              className="inline-flex items-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-red-600 hover:bg-red-700 transition-colors duration-300"
+            >
+              Book With An Instructor
+            </a>
+          </div>
+        </div>
+      </div>
+
+      {/* Course Details Section */}
+      <div className="py-12 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <h2 className="text-base text-red-600 font-semibold tracking-wide uppercase">Our Courses</h2>
+            <p className="mt-2 text-3xl font-bold text-gray-900">Comprehensive Driving Education</p>
+            <p className="mt-4 text-lg text-gray-500">Choose the learning path that best suits your needs</p>
+          </div>
+
+          <div className="mt-12">
+            {/* Standard Course */}
+            <div className="bg-white rounded-xl shadow-md overflow-hidden mb-8 hover:shadow-lg transition-all duration-300">
+              <div className="md:flex">
+                <div className="md:w-1/3 bg-red-600 p-8 text-white">
+                  <h3 className="text-2xl font-bold mb-4">Standard Course</h3>
+                  <p className="mb-4">Perfect for new learners who want a thorough, structured approach to learning</p>
+                  <div className="inline-block bg-red-700 px-4 py-2 rounded-lg">
+                    20-30 Hours Recommended
+                  </div>
+                </div>
+                <div className="md:w-2/3 p-8">
+                  <div className="grid md:grid-cols-2 gap-6">
+                    <div>
+                      <h4 className="font-semibold text-lg mb-3">Course Includes:</h4>
+                      <ul className="space-y-2">
+                        <li className="flex items-center">
+                          <span className="text-green-500 mr-2">✓</span>
+                          <span>Full DVSA curriculum coverage</span>
+                        </li>
+                        <li className="flex items-center">
+                          <span className="text-green-500 mr-2">✓</span>
+                          <span>Theory test preparation</span>
+                        </li>
+                        <li className="flex items-center">
+                          <span className="text-green-500 mr-2">✓</span>
+                          <span>Hazard perception training</span>
+                        </li>
+                        <li className="flex items-center">
+                          <span className="text-green-500 mr-2">✓</span>
+                          <span>Mock practical tests</span>
+                        </li>
+                      </ul>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-lg mb-3">You'll Learn:</h4>
+                      <ul className="space-y-2">
+                        <li className="flex items-center">
+                          <span className="text-green-500 mr-2">✓</span>
+                          <span>Vehicle control and maneuvers</span>
+                        </li>
+                        <li className="flex items-center">
+                          <span className="text-green-500 mr-2">✓</span>
+                          <span>Road safety and awareness</span>
+                        </li>
+                        <li className="flex items-center">
+                          <span className="text-green-500 mr-2">✓</span>
+                          <span>Independent driving skills</span>
+                        </li>
+                        <li className="flex items-center">
+                          <span className="text-green-500 mr-2">✓</span>
+                          <span>Defensive driving techniques</span>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Intensive Course */}
+            <div className="bg-white rounded-xl shadow-md overflow-hidden mb-8 hover:shadow-lg transition-all duration-300">
+              <div className="md:flex">
+                <div className="md:w-1/3 bg-red-600 p-8 text-white">
+                  <h3 className="text-2xl font-bold mb-4">Intensive Course</h3>
+                  <p className="mb-4">Accelerated learning program for those who want to pass quickly</p>
+                  <div className="inline-block bg-red-700 px-4 py-2 rounded-lg">
+                    2-3 Weeks Duration
+                  </div>
+                </div>
+                <div className="md:w-2/3 p-8">
+                  <div className="grid md:grid-cols-2 gap-6">
+                    <div>
+                      <h4 className="font-semibold text-lg mb-3">Course Includes:</h4>
+                      <ul className="space-y-2">
+                        <li className="flex items-center">
+                          <span className="text-green-500 mr-2">✓</span>
+                          <span>40 hours of intensive training</span>
+                        </li>
+                        <li className="flex items-center">
+                          <span className="text-green-500 mr-2">✓</span>
+                          <span>Fast-track theory test booking</span>
+                        </li>
+                        <li className="flex items-center">
+                          <span className="text-green-500 mr-2">✓</span>
+                          <span>Practical test booking included</span>
+                        </li>
+                        <li className="flex items-center">
+                          <span className="text-green-500 mr-2">✓</span>
+                          <span>Daily progress assessments</span>
+                        </li>
+                      </ul>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-lg mb-3">Ideal For:</h4>
+                      <ul className="space-y-2">
+                        <li className="flex items-center">
+                          <span className="text-green-500 mr-2">✓</span>
+                          <span>Students on holiday breaks</span>
+                        </li>
+                        <li className="flex items-center">
+                          <span className="text-green-500 mr-2">✓</span>
+                          <span>Job requirement deadlines</span>
+                        </li>
+                        <li className="flex items-center">
+                          <span className="text-green-500 mr-2">✓</span>
+                          <span>Quick learners</span>
+                        </li>
+                        <li className="flex items-center">
+                          <span className="text-green-500 mr-2">✓</span>
+                          <span>Those with some experience</span>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Refresher Course */}
+            <div className="bg-white rounded-xl shadow-md overflow-hidden mb-8 hover:shadow-lg transition-all duration-300">
+              <div className="md:flex">
+                <div className="md:w-1/3 bg-red-600 p-8 text-white">
+                  <h3 className="text-2xl font-bold mb-4">Refresher Course</h3>
+                  <p className="mb-4">Rebuild your confidence and update your driving skills</p>
+                  <div className="inline-block bg-red-700 px-4 py-2 rounded-lg">
+                    Flexible Hours
+                  </div>
+                </div>
+                <div className="md:w-2/3 p-8">
+                  <div className="grid md:grid-cols-2 gap-6">
+                    <div>
+                      <h4 className="font-semibold text-lg mb-3">Perfect For:</h4>
+                      <ul className="space-y-2">
+                        <li className="flex items-center">
+                          <span className="text-green-500 mr-2">✓</span>
+                          <span>Returning drivers</span>
+                        </li>
+                        <li className="flex items-center">
+                          <span className="text-green-500 mr-2">✓</span>
+                          <span>International license holders</span>
+                        </li>
+                        <li className="flex items-center">
+                          <span className="text-green-500 mr-2">✓</span>
+                          <span>Confidence building</span>
+                        </li>
+                        <li className="flex items-center">
+                          <span className="text-green-500 mr-2">✓</span>
+                          <span>Skills update</span>
+                        </li>
+                      </ul>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-lg mb-3">Focuses On:</h4>
+                      <ul className="space-y-2">
+                        <li className="flex items-center">
+                          <span className="text-green-500 mr-2">✓</span>
+                          <span>UK driving regulations</span>
+                        </li>
+                        <li className="flex items-center">
+                          <span className="text-green-500 mr-2">✓</span>
+                          <span>Modern driving techniques</span>
+                        </li>
+                        <li className="flex items-center">
+                          <span className="text-green-500 mr-2">✓</span>
+                          <span>Highway driving</span>
+                        </li>
+                        <li className="flex items-center">
+                          <span className="text-green-500 mr-2">✓</span>
+                          <span>Urban navigation</span>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Course CTA */}
+          <div className="mt-12 text-center">
+            <p className="text-gray-500 mb-4">Not sure which course is right for you? Get in touch for a consultation</p>
+            <a
+              href="#contact"
+              className="inline-flex items-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-red-600 hover:bg-red-700 transition-colors duration-300"
+            >
+              Contact Us
+            </a>
+          </div>
+        </div>
+      </div>
+
       {/* CTA Section */}
       <div className="bg-red-600">
         <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8 lg:flex lg:items-center lg:justify-between">
