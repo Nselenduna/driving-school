@@ -224,36 +224,36 @@ const Fleet: React.FC = () => {
   const [selectedVehicle, setSelectedVehicle] = useState<Vehicle | null>(null);
 
   return (
-    <div className="pt-16 md:pt-24 bg-white">
+    <div className="pt-16 bg-white min-h-screen">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center">
-          <h2 className="text-base text-red-600 font-semibold tracking-wide uppercase">Our Fleet</h2>
-          <p className="mt-2 text-2xl md:text-3xl font-bold text-gray-900">Training Vehicles for Every License Class</p>
-          <p className="mt-4 text-lg md:text-xl text-gray-500 max-w-2xl mx-auto">
+        <div className="text-center mb-8">
+          <h2 className="text-base text-red-600 font-semibold tracking-wide uppercase">OUR FLEET</h2>
+          <p className="mt-2 text-2xl font-bold text-gray-900">Training Vehicles for Every License Class</p>
+          <p className="mt-4 text-base text-gray-600">
             From learner vehicles to specialized commercial equipment, we have the right vehicle for your training needs
           </p>
         </div>
 
-        <div className="mt-8 md:mt-12 grid grid-cols-1 gap-6 sm:gap-8 md:gap-10 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {vehicles.map((vehicle) => (
             <div
               key={vehicle.id}
-              className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-all duration-300 cursor-pointer transform hover:-translate-y-1"
+              className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-all duration-300 cursor-pointer border border-gray-100"
               onClick={() => setSelectedVehicle(vehicle)}
             >
-              <div className="aspect-w-16 aspect-h-9">
+              <div className="relative aspect-w-16 aspect-h-9">
                 <img
                   src={vehicle.image}
                   alt={vehicle.name}
                   className="object-cover w-full h-full"
                 />
               </div>
-              <div className="p-4 md:p-6">
-                <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-2">{vehicle.name}</h3>
-                <p className="text-sm md:text-base text-gray-600 mb-4">{vehicle.description}</p>
+              <div className="p-4">
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">{vehicle.name}</h3>
+                <p className="text-sm text-gray-600 mb-4">{vehicle.description}</p>
                 <div className="space-y-2">
                   {vehicle.features.map((feature, index) => (
-                    <div key={index} className="flex items-center text-sm text-gray-500">
+                    <div key={index} className="flex items-center text-sm text-gray-600">
                       <span className="text-green-500 mr-2">✓</span>
                       <span>{feature}</span>
                     </div>
@@ -264,8 +264,8 @@ const Fleet: React.FC = () => {
           ))}
         </div>
 
-        <div className="mt-8 md:mt-12 text-center">
-          <p className="text-sm md:text-base text-gray-500">
+        <div className="mt-8 text-center">
+          <p className="text-sm text-gray-500">
             All our vehicles are regularly maintained and equipped with the latest safety features.
             Contact us to discuss specific vehicle requirements for your training needs.
           </p>
@@ -279,24 +279,24 @@ const Fleet: React.FC = () => {
         title={selectedVehicle?.name || ''}
       >
         {selectedVehicle && (
-          <div className="space-y-4 md:space-y-6">
+          <div className="space-y-4">
             <img
               src={selectedVehicle.image}
               alt={selectedVehicle.name}
-              className="w-full h-48 md:h-64 object-cover rounded-lg"
+              className="w-full h-48 object-cover rounded-lg"
             />
             
-            <p className="text-sm md:text-base text-gray-600">{selectedVehicle.description}</p>
+            <p className="text-sm text-gray-600">{selectedVehicle.description}</p>
 
             {/* Detailed Features */}
-            <div className="space-y-4">
-              <h4 className="text-base md:text-lg font-semibold text-gray-900">Key Features</h4>
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
+            <div className="space-y-3">
+              <h4 className="text-base font-semibold text-gray-900">Key Features</h4>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {selectedVehicle.detailedFeatures.map((feature, index) => (
-                  <div key={index} className="p-3 md:p-4 bg-gray-50 rounded-lg">
-                    <div className="text-xl md:text-2xl mb-2">{feature.icon}</div>
-                    <h5 className="text-sm md:text-base font-medium text-gray-900">{feature.title}</h5>
-                    <p className="text-xs md:text-sm text-gray-600">{feature.description}</p>
+                  <div key={index} className="p-3 bg-gray-50 rounded-lg">
+                    <div className="text-xl mb-2">{feature.icon}</div>
+                    <h5 className="text-sm font-medium text-gray-900">{feature.title}</h5>
+                    <p className="text-xs text-gray-600">{feature.description}</p>
                   </div>
                 ))}
               </div>
@@ -304,8 +304,8 @@ const Fleet: React.FC = () => {
 
             {/* Requirements */}
             <div className="space-y-2">
-              <h4 className="text-base md:text-lg font-semibold text-gray-900">Requirements</h4>
-              <ul className="list-disc list-inside text-sm md:text-base text-gray-600 space-y-1">
+              <h4 className="text-base font-semibold text-gray-900">Requirements</h4>
+              <ul className="list-disc list-inside text-sm text-gray-600 space-y-1">
                 {selectedVehicle.requirements.map((req, index) => (
                   <li key={index}>{req}</li>
                 ))}
@@ -314,8 +314,8 @@ const Fleet: React.FC = () => {
 
             {/* Course Includes */}
             <div className="space-y-2">
-              <h4 className="text-base md:text-lg font-semibold text-gray-900">Course Includes</h4>
-              <ul className="list-disc list-inside text-sm md:text-base text-gray-600 space-y-1">
+              <h4 className="text-base font-semibold text-gray-900">Course Includes</h4>
+              <ul className="list-disc list-inside text-sm text-gray-600 space-y-1">
                 {selectedVehicle.courseIncludes.map((item, index) => (
                   <li key={index}>{item}</li>
                 ))}
@@ -324,15 +324,15 @@ const Fleet: React.FC = () => {
 
             {/* Pricing */}
             <div className="space-y-2">
-              <h4 className="text-base md:text-lg font-semibold text-gray-900">Pricing Options</h4>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4">
-                <div className="p-3 md:p-4 bg-gray-50 rounded-lg">
-                  <p className="text-xs md:text-sm text-gray-600">Per Lesson</p>
-                  <p className="text-xl md:text-2xl font-bold text-gray-900">£{selectedVehicle.pricing.perLesson}</p>
+              <h4 className="text-base font-semibold text-gray-900">Pricing Options</h4>
+              <div className="grid grid-cols-2 gap-3">
+                <div className="p-3 bg-gray-50 rounded-lg">
+                  <p className="text-xs text-gray-600">Per Lesson</p>
+                  <p className="text-xl font-bold text-gray-900">£{selectedVehicle.pricing.perLesson}</p>
                 </div>
-                <div className="p-3 md:p-4 bg-gray-50 rounded-lg">
-                  <p className="text-xs md:text-sm text-gray-600">Package (10 Lessons)</p>
-                  <p className="text-xl md:text-2xl font-bold text-gray-900">£{selectedVehicle.pricing.package}</p>
+                <div className="p-3 bg-gray-50 rounded-lg">
+                  <p className="text-xs text-gray-600">Package (10 Lessons)</p>
+                  <p className="text-xl font-bold text-gray-900">£{selectedVehicle.pricing.package}</p>
                 </div>
               </div>
             </div>
