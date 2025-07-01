@@ -21,42 +21,60 @@ interface ResponsiveState {
   breakpoint: BreakpointKey | 'xs';
 }
 
+// Get initial dimensions safely
+const getInitialDimensions = () => {
+  if (typeof window !== 'undefined') {
+    return {
+      width: window.innerWidth,
+      height: window.innerHeight,
+    };
+  }
+  // Default to mobile-first approach
+  return {
+    width: 375, // iPhone standard width
+    height: 667,
+  };
+};
+
 export const useResponsive = (): ResponsiveState => {
-  const [dimensions, setDimensions] = useState<{ width: number; height: number }>({
-    width: typeof window !== 'undefined' ? window.innerWidth : 1024,
-    height: typeof window !== 'undefined' ? window.innerHeight : 768,
-  });
+  const [dimensions, setDimensions] = useState<{ width: number; height: number }>(getInitialDimensions);
 
   useEffect(() => {
+    // Immediate update on mount to ensure correct initial state
+    const updateDimensions = () => {
+      setDimensions({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+    };
+
+    // Update immediately
+    updateDimensions();
+
     let timeoutId: NodeJS.Timeout;
 
     const handleResize = () => {
       // Debounce resize events to improve performance
       clearTimeout(timeoutId);
-      timeoutId = setTimeout(() => {
-        setDimensions({
-          width: window.innerWidth,
-          height: window.innerHeight,
-        });
-      }, 100);
+      timeoutId = setTimeout(updateDimensions, 50); // Reduced debounce time for faster response
     };
-
-    // Set initial dimensions
-    handleResize();
 
     window.addEventListener('resize', handleResize);
     
     // Also listen for orientation changes on mobile
-    window.addEventListener('orientationchange', handleResize);
+    window.addEventListener('orientationchange', () => {
+      // Orientation change needs a longer delay to get correct dimensions
+      setTimeout(updateDimensions, 100);
+    });
 
     return () => {
       window.removeEventListener('resize', handleResize);
-      window.removeEventListener('orientationchange', handleResize);
+      window.removeEventListener('orientationchange', updateDimensions);
       clearTimeout(timeoutId);
     };
   }, []);
 
-  const { width } = dimensions;
+  const { width, height } = dimensions;
 
   // Determine current breakpoint
   const getBreakpoint = (width: number): BreakpointKey | 'xs' => {
@@ -75,8 +93,8 @@ export const useResponsive = (): ResponsiveState => {
   const isSmallScreen = width < BREAKPOINTS.sm; // < 640px
 
   return {
-    width: dimensions.width,
-    height: dimensions.height,
+    width,
+    height,
     isMobile,
     isTablet,
     isDesktop,

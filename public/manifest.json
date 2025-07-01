@@ -9,16 +9,22 @@
       "type": "image/x-icon"
     },
     {
-      "src": "logo192.png",
-      "type": "image/png",
-      "sizes": "192x192",
-      "purpose": "maskable any"
+      "src": "logo.svg",
+      "type": "image/svg+xml",
+      "sizes": "any",
+      "purpose": "any"
     },
     {
-      "src": "logo512.png",
-      "type": "image/png",
+      "src": "logo192.svg",
+      "type": "image/svg+xml",
+      "sizes": "192x192",
+      "purpose": "maskable"
+    },
+    {
+      "src": "logo512.svg",
+      "type": "image/svg+xml",
       "sizes": "512x512",
-      "purpose": "maskable any"
+      "purpose": "maskable"
     }
   ],
   "start_url": "/",
@@ -29,5 +35,14 @@
   "categories": ["education", "business"],
   "lang": "en-GB",
   "scope": "/",
-  "prefer_related_applications": false
+  "prefer_related_applications": false,
+  "shortcuts": [
+    {
+      "name": "Book Lesson",
+      "short_name": "Book",
+      "description": "Book a new driving lesson",
+      "url": "/book",
+      "icons": [{ "src": "logo.svg", "sizes": "192x192" }]
+    }
+  ]
 }

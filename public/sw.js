@@ -1,15 +1,17 @@
 /* eslint-env serviceworker */
 /* global self, caches, fetch */
 
-const CACHE_NAME = 'zhwane-driving-v1';
+const CACHE_NAME = 'zhwane-driving-v3';
 const urlsToCache = [
   '/',
+  '/index.html',
   '/static/js/bundle.js',
   '/static/css/main.css',
   '/manifest.json',
   '/heropicture.jpeg',
-  '/logo192.png',
-  '/logo512.png'
+  '/logo.svg',
+  '/logo192.svg',
+  '/logo512.svg'
 ];
 
 // Install Service Worker
@@ -19,55 +21,62 @@ self.addEventListener('install', (event) => {
     caches.open(CACHE_NAME)
       .then((cache) => {
         console.log('Opened cache');
-        return cache.addAll(urlsToCache);
-      })
-      .catch((error) => {
-        console.error('Failed to cache resources during install:', error);
+        // Cache what we can, ignore failures
+        return Promise.allSettled(
+          urlsToCache.map(url => 
+            cache.add(url).catch(err => 
+              console.warn(`Failed to cache ${url}:`, err)
+            )
+          )
+        );
       })
   );
+  // Activate immediately
+  self.skipWaiting();
 });
 
-// Fetch Event - Cache First Strategy
+// Fetch Event - Network First for HTML, Cache First for assets
 self.addEventListener('fetch', (event) => {
   event.respondWith(
-    caches.match(event.request)
-      .then((response) => {
-        // Cache hit - return response
-        if (response) {
-          return response;
+    (async () => {
+      const url = new URL(event.request.url);
+      
+      // Network-first for HTML and API requests
+      if (event.request.mode === 'navigate' || 
+          url.pathname.startsWith('/api/') || 
+          event.request.headers.get('accept')?.includes('text/html')) {
+        try {
+          const networkResponse = await fetch(event.request);
+          const cache = await caches.open(CACHE_NAME);
+          cache.put(event.request, networkResponse.clone());
+          return networkResponse;
+        } catch (error) {
+          const cachedResponse = await caches.match(event.request);
+          return cachedResponse || caches.match('/');
         }
+      }
+      
+      // Cache-first for assets
+      const cachedResponse = await caches.match(event.request);
+      if (cachedResponse) {
+        return cachedResponse;
+      }
 
-        // IMPORTANT: Clone the request. A request is a stream and
-        // can only be consumed once.
-        const fetchRequest = event.request.clone();
-
-        return fetch(fetchRequest)
-          .then((response) => {
-            // Check if we received a valid response
-            if (!response || response.status !== 200 || response.type !== 'basic') {
-              return response;
-            }
-
-            // IMPORTANT: Clone the response. A response is a stream
-            // and can only be consumed once.
-            const responseToCache = response.clone();
-
-            caches.open(CACHE_NAME)
-              .then((cache) => {
-                cache.put(event.request, responseToCache);
-              });
-
-            return response;
-          })
-          .catch((error) => {
-            console.error('Fetch failed:', error);
-            // Return offline page or cached content
-            if (event.request.destination === 'document') {
-              return caches.match('/');
-            }
-            throw error;
-          });
-      })
+      try {
+        const networkResponse = await fetch(event.request);
+        if (networkResponse.ok) {
+          const cache = await caches.open(CACHE_NAME);
+          cache.put(event.request, networkResponse.clone());
+        }
+        return networkResponse;
+      } catch (error) {
+        // Return default icon for missing images
+        if (event.request.destination === 'image') {
+          return caches.match('/logo.svg');
+        }
+        throw error;
+      }
+    })()
   );
 });
 
@@ -84,6 +93,9 @@ self.addEventListener('activate', (event) => {
           }
         })
       );
+    }).then(() => {
+      // Take control of all clients immediately
+      clients.claim();
     })
   );
 });
@@ -117,12 +129,12 @@ async function syncBookingForms() {
   }
 }
 
-// Push notification handling (for future implementation)
+// Push notification handling
 self.addEventListener('push', (event) => {
   const options = {
     body: event.data ? event.data.text() : 'New notification',
-    icon: '/logo192.png',
-    badge: '/logo192.png',
+    icon: '/logo.svg',
+    badge: '/logo.svg',
     vibrate: [200, 100, 200],
     tag: 'driving-school-notification',
     requireInteraction: true
