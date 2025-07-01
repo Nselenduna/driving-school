@@ -1,7 +1,7 @@
 import React from 'react';
 
 const QRShare: React.FC = () => {
-  const appUrl = "https://driving-school-5fxns9w7o-lloydmgutshini-2160s-projects.vercel.app";
+  const appUrl = "https://zhwanedrivingschool.vercel.app";
   
   return (
     <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
@@ -25,6 +25,8 @@ const QRShare: React.FC = () => {
           <a 
             href={appUrl}
             className="text-red-600 hover:text-red-800 text-sm font-medium break-all"
+            target="_blank"
+            rel="noopener noreferrer"
           >
             {appUrl}
           </a>
