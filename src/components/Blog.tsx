@@ -78,6 +78,14 @@ const sampleBlogPosts: BlogPost[] = [
 export { sampleBlogPosts };
 
 const Blog: React.FC = () => {
+  // Scroll to top when component mounts
+  React.useEffect(() => {
+    // Use both methods to ensure scroll to top works on all devices
+    window.scrollTo(0, 0);
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+  }, []);
+
   return (
     <div className="py-12 bg-white" id="blog">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

@@ -19,14 +19,21 @@ const BlogPost: React.FC<BlogPostProps> = ({ posts }) => {
   const navigate = useNavigate();
   const post = posts.find(p => p.id === Number(id));
 
+  // Scroll to top when component mounts or id changes
+  React.useEffect(() => {
+    // Use both methods to ensure scroll to top works on all devices
+    window.scrollTo(0, 0);
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+  }, [id]);
+
   const handleBackClick = () => {
-    navigate('/#blog');
-    // Add a small delay to ensure the navigation happens before scrolling
+    navigate('/blog');
+    // Scroll to top after navigation
     setTimeout(() => {
-      const blogSection = document.getElementById('blog');
-      if (blogSection) {
-        blogSection.scrollIntoView({ behavior: 'smooth' });
-      }
+      window.scrollTo(0, 0);
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
     }, 100);
   };
 
@@ -112,12 +119,59 @@ const BlogPost: React.FC<BlogPostProps> = ({ posts }) => {
         {/* Share and Navigation */}
         <div className="mt-12 pt-8 border-t border-gray-200">
           <div className="flex justify-between items-center">
-            <button className="text-red-600 hover:text-red-700">
-              ← Previous Post
-            </button>
-            <button className="text-red-600 hover:text-red-700">
-              Next Post →
-            </button>
+            {(() => {
+              const currentIndex = posts.findIndex(p => p.id === Number(id));
+              const previousPost = currentIndex > 0 ? posts[currentIndex - 1] : null;
+              const nextPost = currentIndex < posts.length - 1 ? posts[currentIndex + 1] : null;
+              
+              return (
+                <>
+                  {previousPost ? (
+                    <button 
+                      onClick={() => {
+                        navigate(`/blog/${previousPost.id}`);
+                        // Use immediate scroll for better mobile UX
+                        setTimeout(() => {
+                          window.scrollTo(0, 0);
+                          document.documentElement.scrollTop = 0;
+                          document.body.scrollTop = 0;
+                        }, 50);
+                      }}
+                      className="flex items-center px-4 py-2 text-sm md:text-base text-red-600 hover:text-red-700 bg-red-50 hover:bg-red-100 rounded-lg transition-colors duration-300"
+                    >
+                      <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                      </svg>
+                      Previous
+                    </button>
+                  ) : (
+                    <div></div>
+                  )}
+                  
+                  {nextPost ? (
+                    <button 
+                      onClick={() => {
+                        navigate(`/blog/${nextPost.id}`);
+                        // Use immediate scroll for better mobile UX
+                        setTimeout(() => {
+                          window.scrollTo(0, 0);
+                          document.documentElement.scrollTop = 0;
+                          document.body.scrollTop = 0;
+                        }, 50);
+                      }}
+                      className="flex items-center px-4 py-2 text-sm md:text-base text-red-600 hover:text-red-700 bg-red-50 hover:bg-red-100 rounded-lg transition-colors duration-300"
+                    >
+                      Next
+                      <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </button>
+                  ) : (
+                    <div></div>
+                  )}
+                </>
+              );
+            })()}
           </div>
         </div>
       </div>
