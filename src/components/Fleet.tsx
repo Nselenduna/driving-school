@@ -104,7 +104,7 @@ const vehicles: Vehicle[] = [
   {
     id: 'commercial-truck',
     name: 'Commercial Truck',
-    image: '/commercial truck.jpeg',
+    image: '/commercial truck.jpeg?v=1',
     description: 'For commercial license aspirants. Train on modern trucks equipped with the latest safety features.',
     features: ['Air Brakes', 'Professional Grade', 'Load Training'],
     detailedFeatures: [
@@ -182,7 +182,7 @@ const vehicles: Vehicle[] = [
   {
     id: 'construction-equipment',
     name: 'Construction Equipment',
-    image: 'https://images.unsplash.com/photo-1581094288338-2314dddb7ece?q=80&w=1000&auto=format&fit=crop',
+    image: '/construction equipment.jpeg?v=2',
     description: 'Professional training on excavators and other construction machinery. Get certified for heavy equipment operation.',
     features: ['Safety Certification', 'Site Operation Training', 'Equipment Maintenance'],
     detailedFeatures: [

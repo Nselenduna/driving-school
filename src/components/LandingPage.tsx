@@ -336,7 +336,7 @@ const LandingPage: React.FC = () => {
             <div className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
               <div className="aspect-w-16 aspect-h-9">
                 <img
-                  src="https://images.unsplash.com/photo-1581094288338-2314dddb7ece?q=80&w=1000&auto=format&fit=crop"
+                  src="/construction equipment.jpeg?v=2"
                   alt="Construction Equipment"
                   className="object-cover w-full h-full"
                 />
