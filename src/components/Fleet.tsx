@@ -104,7 +104,7 @@ const vehicles: Vehicle[] = [
   {
     id: 'commercial-truck',
     name: 'Commercial Truck',
-    image: 'https://images.unsplash.com/photo-1659630000995-e65aafc51c08?q=80&w=1000&auto=format&fit=crop',
+    image: '/commercial truck.jpeg',
     description: 'For commercial license aspirants. Train on modern trucks equipped with the latest safety features.',
     features: ['Air Brakes', 'Professional Grade', 'Load Training'],
     detailedFeatures: [

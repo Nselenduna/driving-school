@@ -126,7 +126,17 @@ const BookingForm: React.FC = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-8 bg-white p-8 rounded-lg shadow-sm">
+    <div className="min-h-screen bg-gray-50 py-12">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Page Header */}
+        <div className="text-center mb-12">
+          <h1 className="text-4xl font-bold text-gray-900 mb-4">Book Your Driving Lessons</h1>
+          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            Ready to start your driving journey? Fill out the form below and we'll get in touch to schedule your first lesson.
+          </p>
+        </div>
+
+                 <form onSubmit={handleSubmit} className="space-y-8 bg-white p-8 rounded-lg shadow-sm">
       {/* Personal Information */}
       <div>
         <h3 className="text-lg font-medium text-gray-900 mb-6">Personal Information</h3>
@@ -337,6 +347,8 @@ const BookingForm: React.FC = () => {
         )}
       </div>
     </form>
+      </div>
+    </div>
   );
 };
 
