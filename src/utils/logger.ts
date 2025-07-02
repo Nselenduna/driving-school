@@ -43,21 +43,16 @@ class Logger {
     return level >= this.logLevel;
   }
 
-  private addToBuffer(entry: LogEntry) {
+  private addToBuffer(entry: LogEntry): void {
     this.logs.push(entry);
     if (this.logs.length > this.maxLogs) {
-      this.logs.shift();
+      this.logs.shift(); // Remove oldest log
     }
   }
 
   private formatMessage(entry: LogEntry): string {
     const levelName = LogLevel[entry.level];
     return `[${entry.timestamp}] ${levelName}: ${entry.message}`;
-  }
-
-  private sendToErrorTracking(entry: LogEntry) {
-    // Implement error tracking service integration here
-    // For example, Sentry, LogRocket, etc.
   }
 
   debug(message: string, data?: any): void {
@@ -102,6 +97,57 @@ class Logger {
     }
   }
 
+  private async sendToErrorTracking(entry: LogEntry): Promise<void> {
+    try {
+      // This would integrate with services like Sentry, LogRocket, etc.
+      // For now, we'll store it locally and potentially sync later
+      const errorData = {
+        message: entry.message,
+        stack: entry.error instanceof Error ? entry.error.stack : undefined,
+        timestamp: entry.timestamp,
+        url: entry.url,
+        userAgent: entry.userAgent,
+        data: entry.data,
+      };
+
+      // Store in IndexedDB for later syncing
+      if (typeof window !== 'undefined' && 'indexedDB' in window) {
+        await this.storeErrorLocally(errorData);
+      }
+    } catch (error) {
+      console.error('Failed to log error to tracking service:', error);
+    }
+  }
+
+  private async storeErrorLocally(errorData: any): Promise<void> {
+    return new Promise((resolve, reject) => {
+      const request = indexedDB.open('ErrorLogs', 1);
+      
+      request.onerror = () => reject(request.error);
+      
+      request.onsuccess = () => {
+        const db = request.result;
+        const transaction = db.transaction(['errors'], 'readwrite');
+        const store = transaction.objectStore('errors');
+        
+        store.add({
+          ...errorData,
+          id: Date.now(),
+        });
+        
+        transaction.oncomplete = () => resolve();
+        transaction.onerror = () => reject(transaction.error);
+      };
+      
+      request.onupgradeneeded = (event) => {
+        const db = (event.target as IDBOpenDBRequest).result;
+        if (!db.objectStoreNames.contains('errors')) {
+          db.createObjectStore('errors', { keyPath: 'id' });
+        }
+      };
+    });
+  }
+
   clearLogs(): void {
     this.logs = [];
   }
@@ -143,19 +189,11 @@ const logger = new Logger(
 export default logger;
 
 // Helper function for API error logging
-export function logApiError(endpoint: string, error: Error, requestData?: any): void {
-  logger.error(`API Error: ${endpoint}`, error, {
-    endpoint,
-    requestData,
-    status: (error as any).status,
-    statusText: (error as any).statusText,
-  });
+export function logApiError(endpoint: string, error: Error | AuthError | unknown, requestData?: any): void {
+  logger.error(`API Error at ${endpoint}`, error, { requestData });
 }
 
 // Helper function for component error logging
-export function logComponentError(componentName: string, error: Error, props?: any): void {
-  logger.error(`Component Error: ${componentName}`, error, {
-    componentName,
-    props,
-  });
+export function logComponentError(componentName: string, error: Error | AuthError | unknown, props?: any): void {
+  logger.error(`Error in component ${componentName}`, error, { props });
 } 

@@ -9,6 +9,9 @@ const QRShare: React.FC = () => {
         <div className="text-center mb-8">
           <h2 className="text-2xl font-bold text-gray-900 mb-2">Scan to Visit Our Booking Portal</h2>
           <p className="text-gray-600">Safe & Secure Driving School Booking System</p>
+          {window.location.hostname === 'localhost' && (
+            <p className="text-sm text-yellow-600 mt-2">Note: Site is currently running locally. QR code will update automatically when deployed.</p>
+          )}
         </div>
         
         <div className="flex justify-center mb-8">

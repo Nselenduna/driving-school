@@ -44,6 +44,15 @@ export function registerSW(config?: ServiceWorkerConfig) {
     if (isLocalhost) {
       // This is running on localhost. Check if a service worker still exists or not.
       checkValidServiceWorker(swUrl, config);
+
+      // Add some additional logging to localhost, pointing developers to the
+      // service worker/PWA documentation.
+      navigator.serviceWorker.ready.then(() => {
+        console.log(
+          'This web app is being served cache-first by a service ' +
+          'worker. To learn more, visit https://cra.link/PWA'
+        );
+      });
     } else {
       // Is not localhost. Just register service worker
       registerValidSW(swUrl, config);
@@ -51,19 +60,66 @@ export function registerSW(config?: ServiceWorkerConfig) {
   });
 }
 
+function registerValidSW(swUrl: string, config?: ServiceWorkerConfig) {
+  navigator.serviceWorker
+    .register(swUrl)
+    .then((registration) => {
+      console.log('Service Worker registered successfully:', registration);
+      
+      registration.onupdatefound = () => {
+        const installingWorker = registration.installing;
+        if (installingWorker == null) {
+          return;
+        }
+        installingWorker.onstatechange = () => {
+          if (installingWorker.state === 'installed') {
+            if (navigator.serviceWorker.controller) {
+              // At this point, the updated precached content has been fetched,
+              // but the previous service worker will still serve the older
+              // content until all client tabs are closed.
+              console.log('New content is available; please refresh.');
+              
+              // Execute callback
+              if (config && config.onUpdate) {
+                config.onUpdate(registration);
+              }
+            } else {
+              // At this point, everything has been precached.
+              // It's the perfect time to display a
+              // "Content is cached for offline use." message.
+              console.log('Content is cached for offline use.');
+              
+              // Execute callback
+              if (config && config.onSuccess) {
+                config.onSuccess(registration);
+              }
+            }
+          }
+        };
+      };
+    })
+    .catch((error) => {
+      console.error('Error during service worker registration:', error);
+      if (config && config.onError) {
+        config.onError(new Error(`Service Worker registration failed: ${error.message}`));
+      }
+    });
+}
+
 function checkValidServiceWorker(swUrl: string, config?: ServiceWorkerConfig) {
-  // Check if the service worker can be found.
+  // Check if the service worker can be found. If it can't reload the page.
   fetch(swUrl, {
-    headers: { 'Service-Worker': 'script' }
+    headers: { 'Service-Worker': 'script' },
   })
-    .then(response => {
+    .then((response) => {
+      // Ensure service worker exists, and that we really are getting a JS file.
       const contentType = response.headers.get('content-type');
       if (
         response.status === 404 ||
         (contentType != null && contentType.indexOf('javascript') === -1)
       ) {
         // No service worker found. Probably a different app. Reload the page.
-        navigator.serviceWorker.ready.then(registration => {
+        navigator.serviceWorker.ready.then((registration) => {
           registration.unregister().then(() => {
             window.location.reload();
           });
@@ -78,51 +134,15 @@ function checkValidServiceWorker(swUrl: string, config?: ServiceWorkerConfig) {
     });
 }
 
-function registerValidSW(swUrl: string, config?: ServiceWorkerConfig) {
-  navigator.serviceWorker
-    .register(swUrl)
-    .then((registration) => {
-      console.log('Service Worker registered successfully');
-      
-      registration.onupdatefound = () => {
-        const installingWorker = registration.installing;
-        if (installingWorker == null) {
-          return;
-        }
-
-        installingWorker.onstatechange = () => {
-          if (installingWorker.state === 'installed') {
-            if (navigator.serviceWorker.controller) {
-              // New content available - don't auto refresh, just notify
-              console.log('New content is available');
-              if (config && config.onUpdate) {
-                config.onUpdate(registration);
-              }
-            } else {
-              console.log('Content is cached for offline use');
-              if (config && config.onSuccess) {
-                config.onSuccess(registration);
-              }
-            }
-          }
-        };
-      };
-    })
-    .catch((error) => {
-      console.error('Error during service worker registration:', error);
-      if (config && config.onError) {
-        config.onError(error);
-      }
-    });
-}
-
 export function unregister() {
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker.ready
       .then((registration) => {
         registration.unregister();
       })
-      .catch(console.error);
+      .catch((error) => {
+        console.error('Error during service worker unregistration:', error);
+      });
   }
 }
 
@@ -133,25 +153,19 @@ export function isOnline(): boolean {
 
 // Listen for online/offline events
 export function setupOnlineOfflineListeners() {
-  let syncInProgress = false;
-
   window.addEventListener('online', () => {
     console.log('App is back online');
-    // Prevent multiple sync attempts
-    if (syncInProgress) return;
-
-    if ('serviceWorker' in navigator) {
-      syncInProgress = true;
-      navigator.serviceWorker.ready
-        .then((registration) => {
-          if ('sync' in registration) {
-            return (registration as any).sync.register('booking-form-sync');
-          }
-        })
-        .catch(console.error)
-        .finally(() => {
-          syncInProgress = false;
-        });
+    // Trigger background sync if available
+    if ('serviceWorker' in navigator && 'serviceWorker' in navigator) {
+      navigator.serviceWorker.ready.then((registration) => {
+        // Check if sync is available before using it
+        const syncManager = (registration as any).sync;
+        if (syncManager) {
+          return syncManager.register('booking-form-sync');
+        }
+      }).catch((error) => {
+        console.error('Background sync registration failed:', error);
+      });
     }
   });
 

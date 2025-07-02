@@ -100,8 +100,6 @@ For support, email support@drivingschool.com or open an issue in the repository.
 
 ---
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
 ## Development Workflow
 
 1. Create feature branches from `development`
@@ -119,8 +117,6 @@ Both branches are protected with the following rules:
 - Dismisses stale reviews on new changes
 - Requires latest push approval (main branch)
 - Maintains clean commit history
-
-## Getting Started with Create React App
 
 ## Available Scripts
 

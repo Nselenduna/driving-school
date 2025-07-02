@@ -48,7 +48,7 @@ const LandingPage: React.FC = () => {
             </Link>
             <Link
               to="/share"
-              className="px-8 py-4 bg-white/90 text-red-600 rounded-lg font-semibold hover:bg-red-50 transition-colors duration-300 transform hover:scale-105"
+              className="px-8 py-4 bg-white/90 text-red-600 rounded-lg font-semibold hover:bg-red-50 transition-colors duration-300 transform hover:scale-105 sm:hidden"
             >
               Share
             </Link>
