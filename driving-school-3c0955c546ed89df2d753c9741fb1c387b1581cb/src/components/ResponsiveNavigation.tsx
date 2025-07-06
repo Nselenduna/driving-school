@@ -114,7 +114,7 @@ const ResponsiveNavigation: React.FC = () => {
 
   return (
     <>
-      <nav className="bg-[#1a1f2e]/95 shadow-md fixed w-full z-50 backdrop-blur-sm border-b border-gray-800">
+      <nav className="bg-[#1a1f2e]/95 shadow-sm fixed w-full z-50 backdrop-blur-sm border-b border-gray-700 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-16">
             {/* Logo and Brand */}
@@ -123,7 +123,7 @@ const ResponsiveNavigation: React.FC = () => {
                 <div className="w-10 h-10 bg-red-600 flex items-center justify-center rounded-lg group-hover:bg-red-700 transition-colors duration-200">
                   <span className="text-2xl font-bold text-white">L</span>
                 </div>
-                <span className={`ml-3 font-semibold text-gray-100 transition-all duration-200 ${
+                <span className={`ml-3 font-semibold text-white transition-all duration-200 ${
                   isSmallScreen ? 'text-lg' : 'text-xl'
                 }`}>
                   {getBrandText()}
@@ -145,7 +145,7 @@ const ResponsiveNavigation: React.FC = () => {
               <div className="flex items-center">
                 <button
                   onClick={toggleMobileMenu}
-                  className="inline-flex items-center justify-center p-2 rounded-md text-gray-300 hover:text-red-400 hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-red-500 transition-colors duration-200"
+                  className="inline-flex items-center justify-center p-2 rounded-md text-white hover:text-red-400 hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-red-500 transition-colors duration-200"
                   aria-expanded={isMobileMenuOpen ? "true" : "false"}
                   aria-label={isMobileMenuOpen ? 'Close main menu' : 'Open main menu'}
                 >
@@ -206,17 +206,17 @@ const ResponsiveNavigation: React.FC = () => {
           >
             <div className="px-4 pt-2 pb-3 space-y-1">
               {navLinks.map((link) => (
-                <div key={link.to} className="block py-2 border-b border-gray-800 last:border-b-0">
+                <div key={link.to} className="block py-2 border-b border-gray-100 last:border-b-0">
                   <NavLinkComponent
                     {...link}
-                    className="text-lg block w-full py-2 px-3 rounded-lg hover:bg-gray-800 active:bg-gray-700"
+                    className="text-lg block w-full py-2 px-3 rounded-lg hover:bg-gray-50 active:bg-gray-100"
                     onClick={closeMobileMenu}
                   />
                 </div>
               ))}
               
               {/* Contact information */}
-              <div className="pt-4 mt-4 border-t border-gray-800">
+              <div className="pt-4 mt-4 border-t border-gray-700">
                 <p className="text-sm text-gray-400 mb-4 px-3">Get in touch</p>
                 <div className="space-y-3">
                   <a

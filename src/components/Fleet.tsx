@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
-import Modal from './Modal';
+import React from 'react';
+import { Link } from 'react-router-dom';
 
-interface VehicleFeature {
+export interface VehicleFeature {
   icon: string;
   title: string;
   description: string;
 }
 
-interface Vehicle {
+export interface Vehicle {
   id: string;
   name: string;
   image: string;
@@ -22,323 +22,197 @@ interface Vehicle {
   };
 }
 
-const vehicles: Vehicle[] = [
+export const vehicles: Vehicle[] = [
   {
     id: 'small-sedan',
     name: 'Small Sedan',
-    image: 'https://images.unsplash.com/photo-1549399542-7e3f8b79c341?q=80&w=1000&auto=format&fit=crop',
-    description: 'Perfect for beginners. Our compact sedans are easy to maneuver and ideal for learning the basics of driving.',
-    features: ['Power Steering', 'Dual Controls', 'Automatic & Manual Options'],
+    image: '/small-sedan.jpeg?v=1',
+    description: 'Perfect for beginners learning to drive. Easy to maneuver and control.',
+    features: ['Automatic Transmission', 'Power Steering', 'ABS Brakes', 'Dual Controls'],
     detailedFeatures: [
       {
-        icon: '🎮',
-        title: 'Dual Control System',
-        description: 'Instructor-controlled brake and clutch for enhanced safety during training.'
+        icon: '🚗',
+        title: 'Easy Control',
+        description: 'Perfect for beginners with responsive handling'
       },
       {
         icon: '🔄',
-        title: 'Transmission Options',
-        description: 'Choose between automatic and manual transmission based on your learning preference.'
-      },
-      {
-        icon: '📱',
-        title: 'Modern Dashboard',
-        description: 'Digital display and modern controls to help you learn contemporary vehicle features.'
-      }
-    ],
-    requirements: [
-      'Valid provisional license',
-      'Must be at least 17 years old',
-      'Basic understanding of road signs (we can help with this)'
-    ],
-    courseIncludes: [
-      'Theory preparation',
-      'Hazard perception training',
-      'Parking maneuvers',
-      'Mock test preparation'
-    ],
-    pricing: {
-      perLesson: 35,
-      package: 299
-    }
-  },
-  {
-    id: 'motorcycle',
-    name: 'Motorcycle',
-    image: 'https://images.unsplash.com/photo-1558981806-ec527fa84c39?q=80&w=1000&auto=format&fit=crop',
-    description: 'Learn to ride safely on our training motorcycles. Perfect for A1 and A2 license preparation.',
-    features: ['Various Engine Sizes', 'Safety Equipment Provided', 'Beginner Friendly'],
-    detailedFeatures: [
-      {
-        icon: '🏍️',
-        title: 'Multiple Bike Options',
-        description: 'Training bikes ranging from 125cc to 600cc for different license categories.'
+        title: 'Automatic',
+        description: 'Smooth automatic transmission'
       },
       {
         icon: '🛡️',
-        title: 'Safety Gear Included',
-        description: 'Full set of protective gear provided: helmet, jacket, gloves, and boots.'
+        title: 'Safety',
+        description: 'Modern safety features including ABS'
       },
       {
-        icon: '📊',
-        title: 'Progressive Learning',
-        description: 'Structured curriculum from basic handling to advanced riding techniques.'
+        icon: '👨‍🏫',
+        title: 'Dual Controls',
+        description: 'Instructor has backup controls for safety'
       }
     ],
     requirements: [
-      'CBT completion required',
-      'Age requirements vary by license type',
-      'Basic balance and coordination'
+      'Valid Learner\'s License',
+      'Minimum age 17',
+      'ID Document',
+      'Comfortable with basic car controls'
     ],
     courseIncludes: [
-      'CBT certification',
-      'Road safety training',
-      'Advanced handling techniques',
-      'License preparation'
+      '10 practical driving lessons',
+      'Theory test preparation',
+      'Final assessment',
+      'Booking assistance for driver\'s test'
     ],
     pricing: {
-      perLesson: 45,
-      package: 399
+      perLesson: 350,
+      package: 3000
     }
   },
   {
     id: 'commercial-truck',
     name: 'Commercial Truck',
     image: '/commercial truck.jpeg?v=1',
-    description: 'For commercial license aspirants. Train on modern trucks equipped with the latest safety features.',
-    features: ['Air Brakes', 'Professional Grade', 'Load Training'],
+    description: 'Professional training for commercial driver\'s license. Heavy vehicle expertise.',
+    features: ['Manual Transmission', 'Air Brakes', 'Load Capacity Training', 'Professional Grade'],
     detailedFeatures: [
       {
         icon: '🚛',
-        title: 'Professional Vehicle',
-        description: 'Industry-standard commercial vehicles used by major transport companies.'
+        title: 'Professional',
+        description: 'Industry-standard commercial vehicle'
       },
       {
-        icon: '🎯',
-        title: 'Load Management',
-        description: 'Learn proper loading, securing, and weight distribution techniques.'
+        icon: '⚙️',
+        title: 'Manual',
+        description: 'Full manual transmission control'
       },
       {
-        icon: '📋',
-        title: 'Documentation Training',
-        description: 'Comprehensive training on logbooks and transport documentation.'
+        icon: '🅿️',
+        title: 'Parking',
+        description: 'Advanced parking techniques'
+      },
+      {
+        icon: '📦',
+        title: 'Loading',
+        description: 'Load management training'
       }
     ],
     requirements: [
-      'Valid Category B license',
-      'Medical examination certificate',
-      'Age 21 or above'
+      'Valid Code 10 License',
+      'Medical certificate',
+      'Age 21 or older',
+      'Clean driving record'
     ],
     courseIncludes: [
-      'CPC training modules',
-      'Load securing techniques',
-      'Eco-driving principles',
-      'Safety regulations'
+      '20 practical driving hours',
+      'Load securing training',
+      'Route planning lessons',
+      'Professional driver certification'
     ],
     pricing: {
-      perLesson: 85,
-      package: 799
+      perLesson: 800,
+      package: 12000
     }
   },
   {
-    id: 'passenger-bus',
-    name: 'Passenger Bus',
-    image: 'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?q=80&w=1000&auto=format&fit=crop',
-    description: 'Specialized training for bus driver certification. Learn to safely transport passengers in our modern buses.',
-    features: ['Passenger Safety Training', 'Route Planning', 'Public Transport Regulations'],
-    detailedFeatures: [
-      {
-        icon: '🚌',
-        title: 'Modern Bus Fleet',
-        description: 'Train on contemporary buses used in public transport.'
-      },
-      {
-        icon: '🗺️',
-        title: 'Route Management',
-        description: 'Learn efficient route planning and schedule adherence.'
-      },
-      {
-        icon: '👥',
-        title: 'Passenger Interaction',
-        description: 'Customer service training for passenger transport.'
-      }
-    ],
-    requirements: [
-      'Valid Category B license',
-      'Clean driving record',
-      'Public service vehicle license'
-    ],
-    courseIncludes: [
-      'Passenger safety protocols',
-      'Route optimization',
-      'Emergency procedures',
-      'Customer service training'
-    ],
-    pricing: {
-      perLesson: 75,
-      package: 699
-    }
-  },
-  {
-    id: 'construction-equipment',
+    id: 'construction',
     name: 'Construction Equipment',
     image: '/construction equipment.jpeg?v=2',
-    description: 'Professional training on excavators and other construction machinery. Get certified for heavy equipment operation.',
-    features: ['Safety Certification', 'Site Operation Training', 'Equipment Maintenance'],
+    description: 'Specialized training for construction and earth-moving equipment.',
+    features: ['Heavy Machinery', 'Safety Protocols', 'Site Operations', 'Certification'],
     detailedFeatures: [
       {
         icon: '🚜',
-        title: 'Multiple Equipment Types',
-        description: 'Training on excavators, bulldozers, and other construction machinery.'
+        title: 'Equipment',
+        description: 'Various construction machinery'
       },
       {
         icon: '⚠️',
-        title: 'Site Safety',
-        description: 'Comprehensive site safety and risk assessment training.'
+        title: 'Safety',
+        description: 'Comprehensive safety training'
       },
       {
-        icon: '🔧',
-        title: 'Maintenance Knowledge',
-        description: 'Basic maintenance and equipment care procedures.'
+        icon: '🏗️',
+        title: 'Operations',
+        description: 'Real site operation practice'
+      },
+      {
+        icon: '📜',
+        title: 'Certified',
+        description: 'Industry-recognized certification'
       }
     ],
     requirements: [
-      'Construction site safety card',
-      'Basic mechanical knowledge',
-      'Physical fitness certificate'
+      'Basic driving experience',
+      'Safety course completion',
+      'Physical fitness certificate',
+      'Age 18 or older'
     ],
     courseIncludes: [
-      'Equipment operation techniques',
-      'Safety protocols',
-      'Maintenance procedures',
-      'Site management basics'
+      '40 hours practical training',
+      'Safety protocol training',
+      'Site management basics',
+      'Certification exam'
     ],
     pricing: {
-      perLesson: 95,
-      package: 899
+      perLesson: 1200,
+      package: 15000
     }
   }
 ];
 
 const Fleet: React.FC = () => {
-  const [selectedVehicle, setSelectedVehicle] = useState<Vehicle | null>(null);
-
   return (
     <div className="pt-16 bg-white min-h-screen">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-8">
           <h2 className="text-base text-red-600 font-semibold tracking-wide uppercase">OUR FLEET</h2>
-          <p className="mt-2 text-2xl font-bold text-gray-900">Training Vehicles for Every License Class</p>
-          <p className="mt-4 text-base text-gray-600">
-            From learner vehicles to specialized commercial equipment, we have the right vehicle for your training needs
-          </p>
+          <p className="mt-2 text-3xl font-bold text-gray-900">Choose Your Training Vehicle</p>
+          <p className="mt-4 text-xl text-gray-500">We offer a diverse range of vehicles to suit your learning needs</p>
         </div>
 
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {vehicles.map((vehicle) => (
-            <div
-              key={vehicle.id}
-              className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-all duration-300 cursor-pointer border border-gray-100"
-              onClick={() => setSelectedVehicle(vehicle)}
-            >
-              <div className="relative aspect-w-16 aspect-h-9">
-                <img
-                  src={vehicle.image}
-                  alt={vehicle.name}
-                  className="object-cover w-full h-full"
-                />
-              </div>
-              <div className="p-4">
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">{vehicle.name}</h3>
-                <p className="text-sm text-gray-600 mb-4">{vehicle.description}</p>
-                <div className="space-y-2">
-                  {vehicle.features.map((feature, index) => (
-                    <div key={index} className="flex items-center text-sm text-gray-600">
-                      <span className="text-green-500 mr-2">✓</span>
-                      <span>{feature}</span>
+            <Link key={vehicle.id} to={`/fleet/${vehicle.id}`} className="block group">
+              <div className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-all duration-300">
+                <div className="aspect-w-16 aspect-h-9">
+                  <img
+                    src={vehicle.image}
+                    alt={vehicle.name}
+                    className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-300"
+                  />
+                </div>
+                <div className="p-6">
+                  <h3 className="text-xl font-semibold text-gray-900 group-hover:text-red-600 transition-colors">
+                    {vehicle.name}
+                  </h3>
+                  <p className="mt-2 text-gray-500">{vehicle.description}</p>
+                  <div className="mt-4">
+                    <div className="flex flex-wrap gap-2">
+                      {vehicle.features.slice(0, 3).map((feature, index) => (
+                        <span
+                          key={index}
+                          className="px-3 py-1 text-sm text-gray-600 bg-gray-100 rounded-full"
+                        >
+                          {feature}
+                        </span>
+                      ))}
                     </div>
-                  ))}
+                  </div>
+                  <div className="mt-6 flex justify-between items-center">
+                    <div className="text-gray-900">
+                      <span className="text-sm">From</span>
+                      <p className="text-lg font-semibold">R{vehicle.pricing.perLesson}/lesson</p>
+                    </div>
+                    <span className="text-red-600 group-hover:translate-x-1 transition-transform duration-300">
+                      View Details →
+                    </span>
+                  </div>
                 </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
-
-        <div className="mt-8 text-center">
-          <p className="text-sm text-gray-500">
-            All our vehicles are regularly maintained and equipped with the latest safety features.
-            Contact us to discuss specific vehicle requirements for your training needs.
-          </p>
-        </div>
       </div>
-
-      {/* Detailed Vehicle Modal */}
-      <Modal
-        isOpen={!!selectedVehicle}
-        onClose={() => setSelectedVehicle(null)}
-        title={selectedVehicle?.name || ''}
-      >
-        {selectedVehicle && (
-          <div className="space-y-4">
-            <img
-              src={selectedVehicle.image}
-              alt={selectedVehicle.name}
-              className="w-full h-48 object-cover rounded-lg"
-            />
-            
-            <p className="text-sm text-gray-600">{selectedVehicle.description}</p>
-
-            {/* Detailed Features */}
-            <div className="space-y-3">
-              <h4 className="text-base font-semibold text-gray-900">Key Features</h4>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                {selectedVehicle.detailedFeatures.map((feature, index) => (
-                  <div key={index} className="p-3 bg-gray-50 rounded-lg">
-                    <div className="text-xl mb-2">{feature.icon}</div>
-                    <h5 className="text-sm font-medium text-gray-900">{feature.title}</h5>
-                    <p className="text-xs text-gray-600">{feature.description}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Requirements */}
-            <div className="space-y-2">
-              <h4 className="text-base font-semibold text-gray-900">Requirements</h4>
-              <ul className="list-disc list-inside text-sm text-gray-600 space-y-1">
-                {selectedVehicle.requirements.map((req, index) => (
-                  <li key={index}>{req}</li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Course Includes */}
-            <div className="space-y-2">
-              <h4 className="text-base font-semibold text-gray-900">Course Includes</h4>
-              <ul className="list-disc list-inside text-sm text-gray-600 space-y-1">
-                {selectedVehicle.courseIncludes.map((item, index) => (
-                  <li key={index}>{item}</li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Pricing */}
-            <div className="space-y-2">
-              <h4 className="text-base font-semibold text-gray-900">Pricing Options</h4>
-              <div className="grid grid-cols-2 gap-3">
-                <div className="p-3 bg-gray-50 rounded-lg">
-                  <p className="text-xs text-gray-600">Per Lesson</p>
-                  <p className="text-xl font-bold text-gray-900">£{selectedVehicle.pricing.perLesson}</p>
-                </div>
-                <div className="p-3 bg-gray-50 rounded-lg">
-                  <p className="text-xs text-gray-600">Package (10 Lessons)</p>
-                  <p className="text-xl font-bold text-gray-900">£{selectedVehicle.pricing.package}</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
-      </Modal>
     </div>
   );
 };
