@@ -33,51 +33,48 @@ const VehicleDetails: React.FC = () => {
   return (
     <div className="pt-16 min-h-screen bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        {/* Top Navigation */}
+        {/* Navigation Links */}
         <div className="flex justify-between items-center mb-8">
           <Link
             to="/fleet"
-            className="text-red-600 hover:text-red-700 font-medium flex items-center"
+            className="text-red-600 hover:text-red-700 flex items-center gap-2"
           >
-            <span className="mr-2">←</span> Back to Fleet
+            ← Back to Fleet
           </Link>
           <div className="flex gap-4">
             {prevVehicle && (
               <Link
                 to={`/fleet/${prevVehicle.id}`}
-                className="text-gray-600 hover:text-red-600 font-medium flex items-center"
+                className="text-gray-600 hover:text-red-600"
               >
-                <span className="mr-2">←</span> Previous Vehicle
+                ← {prevVehicle.name}
               </Link>
             )}
             {nextVehicle && (
               <Link
                 to={`/fleet/${nextVehicle.id}`}
-                className="text-gray-600 hover:text-red-600 font-medium flex items-center"
+                className="text-gray-600 hover:text-red-600"
               >
-                Next Vehicle <span className="ml-2">→</span>
+                {nextVehicle.name} →
               </Link>
             )}
           </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          <div>
+        {/* Vehicle Details */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          <div className="aspect-w-16 aspect-h-9 lg:aspect-h-10">
             <img
               src={vehicle.image}
               alt={vehicle.name}
-              className="w-full h-96 object-cover rounded-lg shadow-lg"
+              className="w-full h-full object-cover rounded-xl"
             />
           </div>
-
-          <div className="space-y-6">
-            <div>
-              <h1 className="text-3xl font-bold text-gray-900">{vehicle.name}</h1>
-              <p className="mt-4 text-lg text-gray-600">{vehicle.description}</p>
-            </div>
-
-            {/* Detailed Features */}
-            <div className="space-y-4">
+          <div>
+            <h1 className="text-3xl font-bold text-gray-900">{vehicle.name}</h1>
+            <p className="mt-4 text-xl text-gray-600">{vehicle.description}</p>
+            
+            <div className="mt-8">
               <h2 className="text-xl font-semibold text-gray-900">Key Features</h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {vehicle.detailedFeatures.map((feature: VehicleFeature, index: number) => (
@@ -90,8 +87,7 @@ const VehicleDetails: React.FC = () => {
               </div>
             </div>
 
-            {/* Requirements */}
-            <div className="space-y-3">
+            <div className="mt-8">
               <h2 className="text-xl font-semibold text-gray-900">Requirements</h2>
               <ul className="list-disc list-inside text-gray-600 space-y-2">
                 {vehicle.requirements.map((req: string, index: number) => (
@@ -100,8 +96,7 @@ const VehicleDetails: React.FC = () => {
               </ul>
             </div>
 
-            {/* Course Includes */}
-            <div className="space-y-3">
+            <div className="mt-8">
               <h2 className="text-xl font-semibold text-gray-900">Course Includes</h2>
               <ul className="list-disc list-inside text-gray-600 space-y-2">
                 {vehicle.courseIncludes.map((item: string, index: number) => (
@@ -110,54 +105,55 @@ const VehicleDetails: React.FC = () => {
               </ul>
             </div>
 
-            {/* Pricing */}
-            <div className="space-y-4">
-              <h2 className="text-xl font-semibold text-gray-900">Pricing Options</h2>
-              <div className="grid grid-cols-2 gap-4">
-                <div className="p-4 bg-gray-50 rounded-lg">
-                  <p className="text-sm text-gray-600">Per Lesson</p>
-                  <p className="text-2xl font-bold text-gray-900">£{vehicle.pricing.perLesson}</p>
+            <div className="mt-8">
+              <h2 className="text-xl font-semibold text-gray-900">Pricing</h2>
+              <div className="mt-4 space-y-4">
+                <div className="flex justify-between items-center p-4 bg-gray-50 rounded-lg">
+                  <span className="text-gray-600">Per Lesson</span>
+                  <span className="text-2xl font-bold text-gray-900">R{vehicle.pricing.perLesson}</span>
                 </div>
-                <div className="p-4 bg-gray-50 rounded-lg">
-                  <p className="text-sm text-gray-600">Package (10 Lessons)</p>
-                  <p className="text-2xl font-bold text-gray-900">£{vehicle.pricing.package}</p>
+                <div className="flex justify-between items-center p-4 bg-gray-50 rounded-lg">
+                  <span className="text-gray-600">Full Package</span>
+                  <span className="text-2xl font-bold text-gray-900">R{vehicle.pricing.package}</span>
                 </div>
               </div>
             </div>
 
-            <Link
-              to="/book"
-              className="inline-block w-full sm:w-auto px-8 py-4 bg-red-600 text-white text-center rounded-lg font-semibold hover:bg-red-700 transition-colors mt-6"
-            >
-              Book This Vehicle
-            </Link>
+            <div className="mt-8">
+              <Link
+                to="/booking"
+                className="w-full inline-block text-center px-6 py-3 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors"
+              >
+                Book This Vehicle
+              </Link>
+            </div>
           </div>
         </div>
 
         {/* Bottom Navigation */}
-        <div className="mt-12 border-t pt-8">
+        <div className="mt-12 pt-8 border-t border-gray-200">
           <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
             <Link
               to="/fleet"
-              className="w-full sm:w-auto px-6 py-3 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors text-center"
+              className="text-red-600 hover:text-red-700 flex items-center gap-2"
             >
-              Back to Fleet
+              ← Back to Fleet
             </Link>
-            <div className="flex gap-4 w-full sm:w-auto">
+            <div className="flex gap-4">
               {prevVehicle && (
                 <Link
                   to={`/fleet/${prevVehicle.id}`}
-                  className="flex-1 sm:flex-none px-6 py-3 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors text-center"
+                  className="text-gray-600 hover:text-red-600"
                 >
-                  ← Previous Vehicle
+                  ← {prevVehicle.name}
                 </Link>
               )}
               {nextVehicle && (
                 <Link
                   to={`/fleet/${nextVehicle.id}`}
-                  className="flex-1 sm:flex-none px-6 py-3 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors text-center"
+                  className="text-gray-600 hover:text-red-600"
                 >
-                  Next Vehicle →
+                  {nextVehicle.name} →
                 </Link>
               )}
             </div>
