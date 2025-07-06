@@ -18,8 +18,8 @@ const LandingPage: React.FC = () => {
         <div 
           className="absolute inset-0"
           style={{
-            backdropFilter: 'blur(1px)',
-            backgroundColor: 'rgba(0, 0, 0, 0.6)',
+            backdropFilter: 'blur(2px)',
+            backgroundColor: 'rgba(0, 0, 0, 0.45)',
           }}
         />
 
@@ -305,55 +305,61 @@ const LandingPage: React.FC = () => {
 
           <div className="mt-10 grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3">
             {/* Small Sedan */}
-            <div className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
-              <div className="aspect-w-16 aspect-h-9">
-                <img
-                  src="https://images.unsplash.com/photo-1549399542-7e3f8b79c341?q=80&w=1000&auto=format&fit=crop"
-                  alt="Small Sedan"
-                  className="object-cover w-full h-full"
-                />
+            <Link to="/fleet/small-sedan" className="block group">
+              <div className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-all duration-300">
+                <div className="aspect-w-16 aspect-h-9">
+                  <img
+                    src="https://images.unsplash.com/photo-1549399542-7e3f8b79c341?q=80&w=1000&auto=format&fit=crop"
+                    alt="Small Sedan"
+                    className="object-cover w-full h-full transition-transform duration-300 group-hover:scale-105"
+                  />
+                </div>
+                <div className="p-6">
+                  <h3 className="text-xl font-bold text-gray-900 mb-2">Small Sedan</h3>
+                  <p className="text-gray-600">
+                    Perfect for beginners. Our compact sedans are easy to maneuver and ideal for learning the basics of driving.
+                  </p>
+                </div>
               </div>
-              <div className="p-6">
-                <h3 className="text-xl font-bold text-gray-900 mb-2">Small Sedan</h3>
-                <p className="text-gray-600">
-                  Perfect for beginners. Our compact sedans are easy to maneuver and ideal for learning the basics of driving.
-                </p>
-              </div>
-            </div>
+            </Link>
 
             {/* Motorcycle */}
-            <div className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
-              <div className="aspect-w-16 aspect-h-9">
-                <img
-                  src="https://images.unsplash.com/photo-1558981806-ec527fa84c39?q=80&w=1000&auto=format&fit=crop"
-                  alt="Motorcycle"
-                  className="object-cover w-full h-full"
-                />
+            <Link to="/fleet/motorcycle" className="block group">
+              <div className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-all duration-300">
+                <div className="aspect-w-16 aspect-h-9">
+                  <img
+                    src="https://images.unsplash.com/photo-1558981806-ec527fa84c39?q=80&w=1000&auto=format&fit=crop"
+                    alt="Motorcycle"
+                    className="object-cover w-full h-full transition-transform duration-300 group-hover:scale-105"
+                  />
+                </div>
+                <div className="p-6">
+                  <h3 className="text-xl font-bold text-gray-900 mb-2">Motorcycle</h3>
+                  <p className="text-gray-600">
+                    Learn to ride safely on our training motorcycles. Perfect for A1 and A2 license preparation.
+                  </p>
+                </div>
               </div>
-              <div className="p-6">
-                <h3 className="text-xl font-bold text-gray-900 mb-2">Motorcycle</h3>
-                <p className="text-gray-600">
-                  Learn to ride safely on our training motorcycles. Perfect for A1 and A2 license preparation.
-                </p>
-              </div>
-            </div>
+            </Link>
 
             {/* Construction Equipment */}
-            <div className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
-              <div className="aspect-w-16 aspect-h-9">
-                <img
-                  src="/construction equipment.jpeg?v=2"
-                  alt="Construction Equipment"
-                  className="object-cover w-full h-full"
-                />
+            <Link to="/fleet/construction-equipment" className="block group">
+              <div className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-all duration-300">
+                <div className="aspect-w-16 aspect-h-9">
+                  <img
+                    src="/construction equipment.jpeg?v=2"
+                    alt="Construction Equipment"
+                    className="object-cover w-full h-full transition-transform duration-300 group-hover:scale-105"
+                  />
+                </div>
+                <div className="p-6">
+                  <h3 className="text-xl font-bold text-gray-900 mb-2">Construction Equipment</h3>
+                  <p className="text-gray-600">
+                    Professional training on excavators and other construction machinery. Get certified for heavy equipment operation.
+                  </p>
+                </div>
               </div>
-              <div className="p-6">
-                <h3 className="text-xl font-bold text-gray-900 mb-2">Construction Equipment</h3>
-                <p className="text-gray-600">
-                  Professional training on excavators and other construction machinery. Get certified for heavy equipment operation.
-                </p>
-              </div>
-            </div>
+            </Link>
           </div>
 
           <div className="mt-12 text-center">

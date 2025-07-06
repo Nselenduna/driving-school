@@ -8,6 +8,7 @@ import LandingPage from './components/LandingPage';
 import Blog from './components/Blog';
 import BlogPost from './components/BlogPost';
 import Fleet from './components/Fleet';
+import VehicleDetails from './components/VehicleDetails';
 import ResponsiveNavigation from './components/ResponsiveNavigation';
 import ScrollToTop from './components/ScrollToTop';
 import { sampleBlogPosts } from './components/Blog';
@@ -25,6 +26,7 @@ function App() {
           <Routes>
             <Route path="/" element={<LandingPage />} />
             <Route path="/fleet" element={<Fleet />} />
+            <Route path="/fleet/:id" element={<VehicleDetails />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/blog/:id" element={<BlogPost posts={sampleBlogPosts} />} />
             <Route path="/book" element={<BookingForm />} />

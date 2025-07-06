@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
-import Modal from './Modal';
+import React from 'react';
+import { Link } from 'react-router-dom';
 
-interface VehicleFeature {
+export interface VehicleFeature {
   icon: string;
   title: string;
   description: string;
 }
 
-interface Vehicle {
+export interface Vehicle {
   id: string;
   name: string;
   image: string;
@@ -22,7 +22,7 @@ interface Vehicle {
   };
 }
 
-const vehicles: Vehicle[] = [
+export const vehicles: Vehicle[] = [
   {
     id: 'small-sedan',
     name: 'Small Sedan',
@@ -221,8 +221,6 @@ const vehicles: Vehicle[] = [
 ];
 
 const Fleet: React.FC = () => {
-  const [selectedVehicle, setSelectedVehicle] = useState<Vehicle | null>(null);
-
   return (
     <div className="pt-16 bg-white min-h-screen">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -236,16 +234,16 @@ const Fleet: React.FC = () => {
 
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {vehicles.map((vehicle) => (
-            <div
+            <Link
               key={vehicle.id}
-              className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-all duration-300 cursor-pointer border border-gray-100"
-              onClick={() => setSelectedVehicle(vehicle)}
+              to={`/fleet/${vehicle.id}`}
+              className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-all duration-300 border border-gray-100 group"
             >
               <div className="relative aspect-w-16 aspect-h-9">
                 <img
                   src={vehicle.image}
                   alt={vehicle.name}
-                  className="object-cover w-full h-full"
+                  className="object-cover w-full h-full transition-transform duration-300 group-hover:scale-105"
                 />
               </div>
               <div className="p-4">
@@ -260,7 +258,7 @@ const Fleet: React.FC = () => {
                   ))}
                 </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
 
@@ -271,74 +269,6 @@ const Fleet: React.FC = () => {
           </p>
         </div>
       </div>
-
-      {/* Detailed Vehicle Modal */}
-      <Modal
-        isOpen={!!selectedVehicle}
-        onClose={() => setSelectedVehicle(null)}
-        title={selectedVehicle?.name || ''}
-      >
-        {selectedVehicle && (
-          <div className="space-y-4">
-            <img
-              src={selectedVehicle.image}
-              alt={selectedVehicle.name}
-              className="w-full h-48 object-cover rounded-lg"
-            />
-            
-            <p className="text-sm text-gray-600">{selectedVehicle.description}</p>
-
-            {/* Detailed Features */}
-            <div className="space-y-3">
-              <h4 className="text-base font-semibold text-gray-900">Key Features</h4>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                {selectedVehicle.detailedFeatures.map((feature, index) => (
-                  <div key={index} className="p-3 bg-gray-50 rounded-lg">
-                    <div className="text-xl mb-2">{feature.icon}</div>
-                    <h5 className="text-sm font-medium text-gray-900">{feature.title}</h5>
-                    <p className="text-xs text-gray-600">{feature.description}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Requirements */}
-            <div className="space-y-2">
-              <h4 className="text-base font-semibold text-gray-900">Requirements</h4>
-              <ul className="list-disc list-inside text-sm text-gray-600 space-y-1">
-                {selectedVehicle.requirements.map((req, index) => (
-                  <li key={index}>{req}</li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Course Includes */}
-            <div className="space-y-2">
-              <h4 className="text-base font-semibold text-gray-900">Course Includes</h4>
-              <ul className="list-disc list-inside text-sm text-gray-600 space-y-1">
-                {selectedVehicle.courseIncludes.map((item, index) => (
-                  <li key={index}>{item}</li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Pricing */}
-            <div className="space-y-2">
-              <h4 className="text-base font-semibold text-gray-900">Pricing Options</h4>
-              <div className="grid grid-cols-2 gap-3">
-                <div className="p-3 bg-gray-50 rounded-lg">
-                  <p className="text-xs text-gray-600">Per Lesson</p>
-                  <p className="text-xl font-bold text-gray-900">£{selectedVehicle.pricing.perLesson}</p>
-                </div>
-                <div className="p-3 bg-gray-50 rounded-lg">
-                  <p className="text-xs text-gray-600">Package (10 Lessons)</p>
-                  <p className="text-xl font-bold text-gray-900">£{selectedVehicle.pricing.package}</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
-      </Modal>
     </div>
   );
 };
