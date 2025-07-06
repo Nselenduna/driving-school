@@ -1,0 +1,11 @@
+# Service worker files
+public/sw.js
+
+# Build output
+build/
+
+# Node modules
+node_modules/
+
+# Generated files
+*.min.js 
